@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Matrimo - Wedding Matrimony Template</title>
+        <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway|Righteous" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+            .logo img{width: 250px;}
+            html,body{    background:#fdf0ee;
+    background: linear-gradient(135deg, #fdeeee 0%, rgb(255 251 238) 100%);padding:0;margin:0}
+            body:before {
+    content: '';
+    position: fixed;
+    top: 75px;
+    left: 0;
+    width: 188px;
+    height: 188px;
+    background: url('images/leaf/5.png') no-repeat;
+    background-size: 300px;
+    background-position: -78px -70px;
+}
+
+body:after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 123px;
+    height: 300px;
+    background: url('images/leaf/8.png') no-repeat;
+    background-size: 121px;
+    background-position: center right;
+}
+
+.logo{text-align:center;padding: 30px;margin-bottom:20px}
+.description{text-align:center;color:#000;font-size:44px;    letter-spacing: 4px;
+    padding: 0 0 0 .4em;    text-transform: uppercase;
+    margin: 0;
+    font-family: "Playfair Display", serif;}
+.description1{text-align:center;color:#000;font-size:15px;font-family:Raleway;text-transform:uppercase;letter-spacing:.4em;padding:0 0 0 .4em;margin:0}
+.description1 span{color:#b29047}
+.demos{padding:0;margin:0;list-style-type:none;text-align:center}
+.demos li{display:inline-block;width:30%;padding:25px;text-align:center}
+.demos li img{width:97%;box-shadow:2px 2px 10px rgba(0,0,0,.4);transition:box-shadow .3s}
+.demos li:hover img{box-shadow:7px 7px 30px rgb(0 0 0 / 31%)}
+.demos li a{color:#ccc;font-family:Montserrat;font-size:12px;text-transform:uppercase;text-decoration:none;letter-spacing:.5em}
+.demos li p{margin-top:20px;padding:0 0 0 .5em;color:#000;font-size:16px;letter-spacing:2px}
+.footer-2{width:100%;background:#111;color:#fff;text-align:center;padding:0;height:70px;line-height:70px;font-family:Montserrat;text-transform:uppercase;font-size:11px;letter-spacing:.15em}
+.footer-2 p{margin:0}
+.footer-2 span{color:#05adff}
+.home-part{margin-top:40px}
+.home-part ul{margin-top:0}
+.home-part ul li{padding:25px}
+.all-demos{padding:0;margin:0 auto;list-style-type:none;text-align:center;position:relative;overflow:hidden;width:80%;display:table;margin-top:50px!important;margin-bottom:50px}
+.all-demos li{float:left;padding:0!important;display:inline-block;width:15%;margin-bottom:15px;margin-right:15px}
+.all-demos li a{    color: #1a1b1a;
+    background:#f5e8dd;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 2px;
+    display: block;
+    font-family: Montserrat;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;}
+.all-demos li a:hover{background:#887855;color:#fff}
+
+.poi{
+    margin: 0 auto;
+    display: table;
+    padding-top: 25px;
+}
+.poi li{position: relative;display: inline-block;padding: 0 25px;}
+.poi li:before{content:'';position: absolute;width: 10px;height: 10px;background: #ff8214;border-radius: 20px;left: 0;top: 12px;}
+.poi li span{
+    color: #000;
+    font-size: 20px;
+    letter-spacing: 4px;
+    padding: 0 0 0 .4em;
+    text-transform: uppercase;
+    margin: 0;
+}
+.text{    position: relative;}
+.text h2{    display: inline-block;font-size: 60px;    color: #66451c;       margin: 30px 0 10px -180px;}
+.text h2 span{    color: #c1002b;}
+.text div{    display: inline;margin-left: 10px;}
+.word {
+  position: absolute;
+  opacity: 0;
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+  float: left;
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+  transform: rotateX(90deg);
+  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.letter.in {
+  transform: rotateX(0deg);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wisteria {
+  color: #8e44ad;
+}
+
+.belize {
+  color: #2980b9;
+}
+
+.pomegranate {
+  color: #c0392b;
+}
+
+.green {
+  color: #16a085;
+}
+
+.midnight {
+  color: #2c3e50;
+}
+@media (max-width: 1200px) {
+.all-demos li{width:18%}
+.text h2{font-size: 42px;}
+.description{font-size: 26px;}
+}
+@media (max-width: 1024px) {
+.logo{padding:30px 0}
+.demos li{width:80%}
+.demos li a{font-size:16px}
+.demos li p{margin-top:30px}
+.all-demos li{width:31%}
+}
+@media (max-width: 768px) {
+.description{font-size:22px;width:70%;margin:auto;line-height:2em}
+.demos li{padding:0;width:90%;margin-bottom:40px}
+.demos li p{margin-top:15px}
+.all-demos li{width:100%}
+.text h2 {
+        font-size: 28px;
+    }
+    body:before, body:after{display: none;}
+}
+        </style>
+    </head>
+    <body>
+        <div class="logo">
+            <img src="images/logo-b.png" alt="PULSE">
+            <div class="text">
+                <h2>Suitable for
+                    <div>
+                        <span class="word">Wedding planner.</span>
+                        <span class="word">Matrimony.</span>
+                        <span class="word">Dating.</span>
+                        <span class="word">Bride.</span>
+                        
+                    </div>
+                </h2>
+            </div>
+        </div>
+        <p class="description">Select Demo</p>
+        <p class="description1">
+            <ul class="demos">
+                <li>
+                    <a href="index.html" target="_blank">
+                        <p>Home Pages(Front-end)</p>
+                        <img src="demo/1.png" alt="preview">
+                    </a>
+                </li>
+                <li>
+                    <a href="user-dashboard.html" target="_blank">
+                        <p>User Dashboard</p>
+                        <img src="demo/2.png" alt="preview">
+                    </a>
+                </li>
+                <li>
+                    <a href="admin/dashboard.html" target="_blank">
+                        <p>Admin panel</p>
+                        <img src="demo/3.png" alt="preview">
+                    </a>
+                </li>
+            </ul>
+            <div class="home-part">
+                <p class="description">Front-end Pages</p>
+                <p class="description1">
+                    Matrimo
+                    <span>Wedding Matrimony</span>
+                </p>
+                <ul class="all-demos">
+                    <li>
+                        <a href="all-profiles.html">All profiles</a>
+                    </li>
+                    <li>
+                        <a href="profile-details.html">Profile details</a>
+                    </li>
+                    <li>
+                        <a href="wedding.html">Wedding</a>
+                    </li>
+                    <li>
+                        <a href="wedding-video.html">Wedding video</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Our Services</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="blog-detail.html">Blog detail</a>
+                    </li>
+                    <li>
+                        <a href="enquiry.html">Ask your doubts</a>
+                    </li>
+                    <li>
+                        <a href="make-reservation.html">Make Reservation</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="coming-soon.html" target="_blank">Coming soon</a>
+                    </li>
+                    <li>
+                        <a href="404.html">404</a>
+                    </li>
+                    <li>
+                        <a href="user-dashboard.html">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="user-profile.html">My profile</a>
+                    </li>
+                    <li>
+                        <a href="user-interests.html">Interests</a>
+                    </li>
+                    <li>
+                        <a href="user-chat.html">Chat lists</a>
+                    </li>
+                    <li>
+                        <a href="user-plan.html">My plan details</a>
+                    </li>
+                    <li>
+                        <a href="user-setting.html">Profile settings</a>
+                    </li>
+                    <li>
+                        <a href="user-profile-edit.html">Edit full profile</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="sign-up.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="home-part">
+                <p class="description">Dashboard Pages</p>
+                <p class="description1">
+                    Matrimo
+                    <span>Wedding Matrimony</span>
+                </p>
+                <ul class="all-demos">
+                    <li><a href="user-dashboard.html">Dashboard</a></li>
+                    <li><a href="user-profile.html">My profile</a></li>
+                    <li><a href="user-interests.html">Interests</a></li>
+                    <li><a href="user-chat.html">Chat lists</a></li>
+                    <li><a href="user-plan.html">My plan details</a></li>
+                    <li><a href="user-setting.html">Profile settings</a></li>
+                    <li><a href="user-profile-edit.html">Edit full profile</a></li>
+                    <li><a href="login.html">Sign in</a></li>
+                </ul>
+            </div>
+            <div class="home-part">
+                <p class="description">Admin Pages</p>
+                <p class="description1">
+                    Matrimo
+                    <span>Wedding Matrimony</span>
+                </p>
+                <ul class="all-demos">
+                    <li class="ic-db">
+                        <a href="admin/dashboard.html">Dashboard</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-new-user-requests.html">New User Requests</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-all-users.html">All Users</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-free-users.html">Free Users</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-gold-users.html">Standard Users</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-platinum-users.html">Premium Users</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-add-new-user.html">Add new User</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-meta.html">Meta tags</a>
+                      </li>
+                      
+                      <li>
+                        <a href="admin/seo-xml-sitemap.html">XML Sitemap</a>
+                      </li>
+                      <li class="ic-pay">
+                        <a href="admin/admin-all-payments.html">All Payments</a>
+                      </li>
+                      <li class="ic-pri">
+                        <a href="admin/admin-price.html">Pricing Plans</a>
+                      </li>
+                      <li class="ic-pay">
+                        <a href="admin/admin-payment-credentials.html">Payment gateway</a>
+                      </li>
+                      <li class="ic-set">
+                        <a href="admin/admin-setting.html">Site Setting</a>
+                      </li>
+                      <li class="ic-logo">
+                        <a href="admin/admin-logo.html">Website Logo</a>
+                      </li>
+                      <li class="ic-colr">
+                        <a href="admin/color-settings.html">Color Setting</a>
+                      </li>
+                      <li class="ic-medi">
+                        <a href="admin/media-library.html">Media Library</a>
+                      </li>
+                      <li>
+                        <a href="admin/admin-home-search.html">Search</a>
+                    </li>
+                    <li>
+                    <a href="admin/admin-home-services.html">Services</a>
+                  </li>
+                  <li>
+                    <a href="admin/admin-home-reviews.html">Customer reviews</a>
+                  </li>
+                  <li>
+                    <a href="admin/admin-home-recent-couples.html">Recent couples</a>
+                  </li>
+                  <li>
+                    <a href="admin/admin-home-meet-team.html">Meet out team</a>
+                  </li>
+                  <li>
+                    <a href="admin/admin-photo-gallery.html">Photo gallery</a>
+                  </li>
+                  <li>
+                    <a href="admin/admin-home-blogs.html">Blog & Articles</a>
+                  </li>
+                  <li class="ic-txt">
+                    <a href="admin/admin-profile-filters.html">All profile filters</a>
+                  </li>
+                  <li class="ic-txt">
+                      <a href="admin/admin-all-static-page.html">All Pages</a>
+                    </li>
+                  <li class="ic-txt">
+                    <a href="admin/admin-all-text-update.html">All Text Update</a>
+                  </li>
+                  <li class="ic-txt">
+                    <a href="admin/admin-footer.html">Footer</a>
+                  </li>
+                  <li class="ic-dum">
+                    <a href="admin/admin-dummy-images.html">Dummy Images</a>
+                  </li>
+                  <li class="ic-mail">
+                    <a href="admin/admin-all-mail.html" class="">Mail Templates</a>
+                  </li>
+                  <li class="ic-febk">
+                    <a href="admin/admin-enquiry.html">All Enquiry</a>
+                  </li>
+                  <li class="ic-imp">
+                    <a href="admin/admin-export.html">Export</a>
+                  </li>
+                  <li class="ic-act">
+                    <a href="admin/activate.html" class="">Activation</a>
+                  </li>
+                  <li class="ic-upd">
+                    <a href="admin/updates.html" class="">Template updates</a>
+                  </li>
+                  <li>
+                    <a href="admin/seo-google-analytics-code.html">Google Analytics Code</a>
+                  </li>
+                </ul>
+            </div>
+            <div class="footer-2">
+                <p>Created by RN53 Themes</p>
+            </div>
+            <script>
+                var words = document.getElementsByClassName('word');
+var wordArray = [];
+var currentWord = 0;
+
+words[currentWord].style.opacity = 1;
+for (var i = 0; i < words.length; i++) {
+  splitLetters(words[i]);
+}
+
+function changeWord() {
+  var cw = wordArray[currentWord];
+  var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
+  for (var i = 0; i < cw.length; i++) {
+    animateLetterOut(cw, i);
+  }
+  
+  for (var i = 0; i < nw.length; i++) {
+    nw[i].className = 'letter behind';
+    nw[0].parentElement.style.opacity = 1;
+    animateLetterIn(nw, i);
+  }
+  
+  currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
+}
+
+function animateLetterOut(cw, i) {
+  setTimeout(function() {
+		cw[i].className = 'letter out';
+  }, i*80);
+}
+
+function animateLetterIn(nw, i) {
+  setTimeout(function() {
+		nw[i].className = 'letter in';
+  }, 340+(i*80));
+}
+
+function splitLetters(word) {
+  var content = word.innerHTML;
+  word.innerHTML = '';
+  var letters = [];
+  for (var i = 0; i < content.length; i++) {
+    var letter = document.createElement('span');
+    letter.className = 'letter';
+    letter.innerHTML = content.charAt(i);
+    word.appendChild(letter);
+    letters.push(letter);
+  }
+  
+  wordArray.push(letters);
+}
+
+changeWord();
+setInterval(changeWord, 1500);
+            </script>
+        </body>
+    </html>

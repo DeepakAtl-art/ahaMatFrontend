@@ -1,0 +1,26 @@
+inside fitness-app-backend open terminal 
+run: "npm i" to install dependence
+-----------------
+set up env values :-
+PORT=5000
+DB_USER=your username
+DB_HOST=localhost/host name
+DB_NAME=fitnessapp
+DB_PASSWORD=your-password
+DB_PORT=5432
+JWT_SECRET="812479d0cd8bcd7b06c7422dad8a146f28182e7e3e8cb0762ddfad3e83cf01ae8dae7eb7218f6b8cd6f8dee227c1fbc56572c1321818e98513fbcc9bddf09"
+EMAIL_USER = "princess73@ethereal.email"
+EMAIL_PASSWORD = "bAkc79HBJu7FZkR9cE"
+-------------------------------------
+run: "npm run dev" to start server
+______________________________________
+
+inside fitness-app-frontend
+
+run: "npm i" to install dependence
+-------------------------------
+set up env values :-
+VITE_API_BASE_URL=http://localhost:5000
+---------------------------------
+run: "npm run dev" to start server
+
