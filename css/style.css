@@ -785,7 +785,7 @@ img{
 }
 
 .hom-nav .ic-logo {
-    width: 40px;
+    width: 50px;
     padding-top: 2px;
     margin-right: 10px;
 }
@@ -5089,7 +5089,7 @@ span.mail::before {
 .pg-pro-big-im .s1 img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .pg-pro-big-im .s2 {
@@ -10429,7 +10429,7 @@ h2.db-tit{
     .pg-pro-big-im .s1 img {
         width: 100%;
         max-width: 500px;
-        height: 390px;
+        /* height: 390px; */
         margin: 0 auto;
         display: table;
     }
@@ -11407,7 +11407,7 @@ h2.db-tit{
     }
 
     .pg-pro-big-im .s1 img {
-        height: 350px;
+        /* height: 350px; */
         /* width: 200px; */
         /* margin: 0 auto; */
         /* display: table; */
@@ -11965,7 +11965,7 @@ h2.db-tit{
     }
 
     .pg-pro-big-im .s1 img {
-        height: 300px;
+        /* height: 300px; */
     }
 
     .wedd-gall-pg {
@@ -12470,3 +12470,40 @@ select.form-select {
 
 }
 
+
+.responsive-image-container {
+    height: 1200px; /* Default height for desktops */
+    overflow: hidden;
+}
+
+.pro {
+    object-fit: cover;
+    width: 80%;
+    height: 80%;
+}
+
+/* For tablets */
+@media (max-width: 768px) {
+    .responsive-image-container {
+        height: 300px;
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+    .responsive-image-container {
+        height: 200px;
+    }
+}
+
+
+ul.list-unstyled.d-flex {
+    display: block !important;
+}
+
+
+img#profileImage{
+
+    max-width: 100%;
+    object-fit: contain !important;
+}

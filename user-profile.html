@@ -95,7 +95,7 @@
                 <div class="menu-pop-help">
                     <h4>Support Team</h4>
                     <div class="user-pro">
-                        <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                        <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                     </div>
                     <div class="user-bio">
                         <h5>Ashley emyy</h5>
@@ -124,7 +124,7 @@
                 <div class="menu-pop-help">
                     <h4>Support Team</h4>
                     <div class="user-pro">
-                        <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                        <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                     </div>
                     <div class="user-bio">
                         <h5>Aahakalyanam</h5>
@@ -158,8 +158,8 @@
                                 <i></i><i></i><i></i>
                             </span> -->
                             <a href="index.html" class="logo-brand">
-                                <img src="images/logo1.png" alt="Logo" loading="lazy" class="ic-logo">
-                                <span class="logo-text">ஆஹா கல்யாணம்</span>
+                                <img src="images/AHA KALYANAM LOGO.png" alt="Logo" loading="lazy" class="ic-logo">
+                                <!-- <span class="logo-text">ஆஹா கல்யாணம்</span> -->
                             </a>
                         </div>
                         <!-- TOP MENU -->
@@ -188,7 +188,7 @@
                         <!-- USER PROFILE -->
                         <div class="al">
                             <div class="head-pro">
-                                <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                                <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                                 <b>Aahakalyanam</b><br>
                                 <h4>Support</h4>
                                 <span class="fclick"></span>
@@ -226,13 +226,12 @@
             
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="blog.html">Blog</a></li>
         
                 </ul>
                 <div class="menu-pop-help">
                     <h4>Support Team</h4>
                     <div class="user-pro">
-                        <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                        <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                     </div>
                     <div class="user-bio">
                         <h5>Aahakalyanam</h5>
@@ -305,14 +304,14 @@
                                     <h2 class="db-tit">Profiles status</h2>
                                     <div class="db-profile">
                                         <div class="img">
-                                            <img id="profileImage" src="images/default.jpg" loading="lazy" alt="User Profile Image">
+                                            <img id="profileImage" src="images/ahh kalayam_1.webp" loading="lazy" alt="User Profile Image">
                                         </div>
                                         <div class="edit">
                                             <a href="view-user-profile.html" class="cta-dark" target="_blank">View profile</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-6 col-xl-4 db-sec-com">
+                                <!-- <div class="col-md-12 col-lg-6 col-xl-4 db-sec-com">
                                     <h2 class="db-tit">Profiles status</h2>
                                     <div class="db-pro-stat">
                                         <h6>Profile completion</h6>
@@ -364,7 +363,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                             <!-- <div class="row">
@@ -398,8 +397,8 @@
         <section class="wed-hom-footer">
             <div class="container">
                 <div class="row foot-supp">
-                    <h2><span>Free support:</span> +91 8015666798 &nbsp;&nbsp;|&nbsp;&nbsp; <span>Email:</span>
-                        aahakalyanaminfo@gmail.com</h2>
+                    <h2><span>Free support:</span> +91 8015666798 &nbsp;&nbsp;|&nbsp;&nbsp;                             <span>Email:</span> <span style="text-transform: lowercase;">aahakalyanaminfo@gmail.com</span>
+    
                 </div>
                 <div class="row wed-foot-link wed-foot-link-1">
                     <div class="col-md-4">
@@ -424,7 +423,7 @@
             </div>
         </section>
         <!-- END -->
-
+    
         <!-- COPYRIGHTS -->
         <section>
             <div class="cr">
@@ -539,7 +538,7 @@ try {
         // Assuming your API returns something like: { name: ..., profile_image: "uploads/12.jpg" }
 
         const imgPath = data.data['image_1'] || "images/default.jpg"; // fallback if not found
-        document.getElementById("profileImage").src = imgPath;
+        document.getElementById("profileImage").src = `http://159.89.174.77:5000/${imgPath}`;
     })
     .catch(error => {
         console.error("Error loading profile:", error);

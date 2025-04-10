@@ -93,7 +93,7 @@
             <div class="menu-pop-help">
                 <h4>Support Team</h4>
                 <div class="user-pro">
-                    <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                    <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                 </div>
                 <div class="user-bio">
                     <h5>Ashley emyy</h5>
@@ -122,7 +122,7 @@
             <div class="menu-pop-help">
                 <h4>Support Team</h4>
                 <div class="user-pro">
-                    <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                    <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                 </div>
                 <div class="user-bio">
                     <h5>Aahakalyanam</h5>
@@ -157,8 +157,8 @@
                             <i></i><i></i><i></i>
                         </span> -->
                         <a href="index.html" class="logo-brand">
-                            <img src="images/logo1.png" alt="Logo" loading="lazy" class="ic-logo">
-                            <span class="logo-text">ஆஹா கல்யாணம்</span>
+                            <img src="images/AHA KALYANAM LOGO.png" alt="Logo" loading="lazy" class="ic-logo">
+                            <!-- <span class="logo-text">ஆஹா கல்யாணம்</span> -->
                         </a>
                     </div>
 
@@ -189,7 +189,7 @@
                     <!-- USER PROFILE -->
                     <div class="al">
                         <div class="head-pro">
-                            <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                            <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                             <b>Aahakalyanam</b><br>
                             <h4>Support</h4>
                             <span class="fclick"></span>
@@ -220,7 +220,7 @@
         <div class="mv-bus">
             <h4><i class="fa fa-globe" aria-hidden="true"></i> EXPLORE CATEGORY</h4>
             <ul>
-                <li><a href="all-profiles.html">View Proofiles</a></li>
+                <li><a href="all-profiles.html">View Profiles</a></li>
                 <li><a href="plans.html">Plans</a></li>
             </ul>
             <h4><i class="fa fa-align-center" aria-hidden="true"></i> All Pages</h4>
@@ -228,13 +228,12 @@
         
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
     
             </ul>
             <div class="menu-pop-help">
                 <h4>Support Team</h4>
                 <div class="user-pro">
-                    <img src="images/profiles/1.jpg" alt="" loading="lazy">
+                    <img src="images/20250409_201357_0000.png" alt="" loading="lazy">
                 </div>
                 <div class="user-bio">
                     <h5>Aahakalyanam</h5>
@@ -294,7 +293,6 @@
                     <div class="col-md-8 col-lg-9">
                         <div class="row">
                             <div class="col-md-12 db-sec-com">
-                                <h2 class="db-tit">Interest request</h2>
                                 <div class="db-pro-stat">
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="dropdown">
@@ -311,7 +309,7 @@
                                        
                                           <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                              <a class="nav-link active" data-bs-toggle="tab" href="#home">New requests</a>
+                                              <a class="nav-link active" data-bs-toggle="tab" href="#home">Saved Interest</a>
                                             </li>
                                           </ul>
                                           <!-- Tab panes -->
@@ -471,8 +469,8 @@
     <section class="wed-hom-footer">
         <div class="container">
             <div class="row foot-supp">
-                <h2><span>Free support:</span> +91 8015666798 &nbsp;&nbsp;|&nbsp;&nbsp; <span>Email:</span>
-                    aahakalyanaminfo@gmail.com</h2>
+                <h2><span>Free support:</span> +91 8015666798 &nbsp;&nbsp;|&nbsp;&nbsp;                             <span>Email:</span> <span style="text-transform: lowercase;">aahakalyanaminfo@gmail.com</span>
+
             </div>
             <div class="row wed-foot-link wed-foot-link-1">
                 <div class="col-md-4">
@@ -508,7 +506,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>>
     <!-- END -->
     <!-- Optional JavaScript -->
 
@@ -538,12 +536,16 @@
                     const age = profile["age"] || "-";
         
                     const id = profile['linked_to'] || "-";
-                    const height = profile["height"] || "-";
+                    const caste = profile["caste"] || "-";
                     const job = profile["job"] || "-";
                     const userType = profile["user_type"] || "Free"; // Platinum, Gold, etc.
-                    const image = profile["image_url"] || "images/profiles/default.jpg";
-                    const requestTime = profile["request_on"] || "N/A";
+                    const image = profile["image_1"] || "images/profiles/default.jpg";
+                    const sub_caste = profile["sub_caste"] || "N/A";
                     const profileLink = `profile-details.html?id=${profile["id"]}`; // optional
+
+                    const imageUrl =   `http://159.89.174.77:5000/${image}`;
+
+                    console.log(imageUrl);
         
                     const badgeClass = {
                         "Platinum": "user-pla-pat",
@@ -554,7 +556,7 @@
                     const li = document.createElement("li");
                     li.innerHTML = `
                         <div class="db-int-pro-1"> 
-                            <img src="${image}" alt=""> 
+                            <img src="${imageUrl}" alt=""> 
                             <span class="badge bg-primary ${badgeClass}">${userType} user</span>
                         </div>
                         <div class="db-int-pro-2">
@@ -562,8 +564,6 @@
                             <ol class="poi">
                                 <li>City: <strong>${city}</strong></li>
                                 <li>Age: <strong>${age}</strong></li>
-                                <li>Height: <strong>${height}</strong></li>
-                                <li>Job: <strong>${job}</strong></li>
                             </ol>
                             <ol class="poi poi-date">
                                 <li>Register_number: ${id}</li>
