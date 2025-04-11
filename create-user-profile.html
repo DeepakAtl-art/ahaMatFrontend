@@ -1339,7 +1339,7 @@ function collectHoroscopeValues() {
 
                 
                 const userId = localStorage.getItem("viewProfileUserId");
-                formData.append("linked_to", userId);
+
         
                // 🎯 Select all <select> elements inside box1 and box2
     const horoscopeBox1 = Array.from(document.querySelectorAll("#horoscopeBox1 select"));
@@ -1371,6 +1371,10 @@ function collectHoroscopeValues() {
                     });
         
                     let result = await response.json();
+
+                    console.log(result);
+                    sessionStorage.setItem("registeredProfile", JSON.stringify(result));
+
         
                     if (response.ok) {
                         alert("Form submitted successfully!");

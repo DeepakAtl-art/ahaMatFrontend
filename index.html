@@ -1552,6 +1552,8 @@ document.getElementById("logoutBtn").addEventListener("click", async function (e
 
          window.location.href = "index.html";
       } else {
+        localStorage.removeItem("access_token");
+
         alert("Logout failed. Please try again.");
       }
     } catch (error) {
