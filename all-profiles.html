@@ -1071,7 +1071,7 @@ function populateProfiles(profiles) {
                 <div class="all-pro-box ${isOnline}" data-useravil="${availability}" data-aviltxt="${availabilityText}">
                     <!--PROFILE IMAGE-->
                     <div class="pro-img">
-                        <a href="profile-details.html?userId=${profile.linked_to}">
+                        <a href="profile-details.html?userId=${profile.id}">
                             <img src="http://159.89.174.77:5000/${profile.image_1}" alt="">
                         </a>
                     </div>
@@ -1079,16 +1079,16 @@ function populateProfiles(profiles) {
 
                     <!--PROFILE NAME-->
                     <div class="pro-detail">
-                        <h4><a href="profile-details.html?userId=${profile.linked_to}">${profile.name}</a></h4>
+                        <h4><a href="profile-details.html?userId=${profile.id}">${profile.name}</a></h4>
                         <div class="pro-bio">
-                            <span class="fs-4 fw-semibold text-light p-2">Regis No : #${profile.linked_to}</span>
+                            <span class="fs-4 fw-semibold text-light p-2">Regis No : #${profile.id}</span>
                             <span class="d-inline-block px-3 p-2">Caste: ${profile.caste}</span>
                             <span class="d-inline-block px-3 p-2">Sub cast : ${profile.sub_caste || "no bar"}</span>
                         </div>
                         <div class="links">
 <a href="#!" class="cta cta-sendint" data-user-id="${profile.linked_to}" data-bs-toggle="modal" data-bs-target="#sendInter">
     Send Interest
-</a>                            <a href="profile-details.html?userId=${profile.linked_to}">More details</a>
+</a>                            <a href="profile-details.html?userId=${profile.id}">More details</a>
                         </div>
                     </div>
                     <!--END PROFILE NAME-->

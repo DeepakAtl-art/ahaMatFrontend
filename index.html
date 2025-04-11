@@ -1548,7 +1548,7 @@ document.getElementById("logoutBtn").addEventListener("click", async function (e
       if (response.status === 200) {
         console.log("The decoded token!!!");
         // Redirect to index.js (or your login/homepage)
-        localStorage.removeItem("access_token");
+            localStorage.removeItem("access_token");
 
          window.location.href = "index.html";
       } else {

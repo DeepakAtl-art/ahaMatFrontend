@@ -812,7 +812,7 @@ function loadProfile(profileId) {
     .then(response => {
         if (!response.ok) {
             if (response.status === 500 || response.status === 401) {
-                alert("Session expired or server error! Redirecting to home...");
+                alert("Error occured, Redirecting to home...");
                 window.location.href = "index.html"; // Redirect to home
             }
             throw new Error(`HTTP error! Status: ${response.status}`);

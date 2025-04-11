@@ -409,9 +409,9 @@
                                             <label class="lb">Gender</label>
                                             <select class="form-control" name="gender" required>
                                                 <option value="" disabled selected>Select your gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                                <option value="other">Other</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -497,8 +497,12 @@
                 name: formData.get("name"),
                 email: formData.get("email"),
                 phone: formData.get("phone"),
-                password: formData.get("pswd")
+                password: formData.get("pswd"),
+                gender: formData.get("gender")
+
             };
+
+            console.log(userData); // Log the user data to the console for debugging
         
             try {
                 const response = await fetch("http://159.89.174.77:5000/api/createUser", {
