@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Layout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <style>
+        /* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+} */
+
+.main-container {
+    text-align: center;
+}
+
+.main-box {
+    border: 2px solid blue;
+    padding: 10px;
+    display: inline-block;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 5px;
+}
+
+.cell {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.gap {
+    border: none;
+    background-color: transparent;
+    font-style: italic;
+}
+    </style>
+    <div class="main-container">
+        <div class="main-box">
+            <div class="grid">
+                <textarea  class="cell" id="1" > </textarea>   
+                <textarea  class="cell" id="2" > </textarea>   
+                <textarea  class="cell" id="3" > </textarea>   
+                <textarea  class="cell" id="4" > </textarea>   
+                <textarea  class="cell" id="5" > </textarea>   
+
+                <div class="cell gap">Aamsam</div>
+                <div class="cell gap"></div>
+
+                <textarea  class="cell" id="6" > </textarea>   
+                <textarea  class="cell" id="7" > </textarea>   
+                <div class="cell gap"></div>
+                <div class="cell gap"></div>
+                <textarea  class="cell" id="8" > </textarea>   
+                <textarea  class="cell" id="9" > </textarea>   
+                <textarea  class="cell" id="10" > </textarea>   
+                <textarea  class="cell" id="11" > </textarea>   
+                <textarea  class="cell" id="12" > </textarea>   
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

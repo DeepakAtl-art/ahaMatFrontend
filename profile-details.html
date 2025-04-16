@@ -558,9 +558,8 @@
                                 <!-- END PROFILE ABOUT -->
                                 <!-- HOROSCOPIC content -->
                           
-                                <div class="container mt-4 role-hide-user">
+                                <!-- <div class="container mt-4 role-hide-user">
                                     <div class="row justify-content-center">
-                                        <!-- First Horoscope Box -->
                                         <div class="col-md-6">
                                             <div class="row g-0 text-center fs-7">
                                                 <div class="col-3 border p-3">சூரியன்</div>
@@ -583,7 +582,6 @@
                                             </div>
                                         </div>
                                 
-                                        <!-- Second Horoscope Box -->
                                         <div class="col-md-6">
                                             <div class="row g-0 text-center fs-7">
                                                 <div class="col-3 border p-3" >சூரியன்</div>
@@ -606,9 +604,67 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 
 
+
+                                <div class="wrapper1   pr-bio-c pr-bio-info role-hide-user">
+                                    <div class="main-container" id="RASI">
+                                        <div class="main-box" >
+                                            <div class="grid">
+                                                <textarea  class="cell" id="1" readonly> </textarea>   
+                                                <textarea  class="cell" id="2"readonly > </textarea>   
+                                                <textarea  class="cell" id="3"readonly > </textarea>   
+                                                <textarea  class="cell" id="4"readonly > </textarea>   
+                                                <textarea  class="cell" id="5"readonly> </textarea>   
+                                
+                                                <div class="cell gap">RASI</div>
+                                                <div class="cell gap"></div>
+                                
+                                                <textarea  class="cell" id="6"readonly > </textarea>   
+                                                <textarea  class="cell" id="7"readonly > </textarea>   
+                                                <div class="cell gap"></div>
+                                                <div class="cell gap"></div>
+                                                <textarea  class="cell" id="8"readonly > </textarea>   
+                                                <textarea  class="cell" id="9" readonly> </textarea>   
+                                                <textarea  class="cell" id="10"readonly > </textarea>   
+                                                <textarea  class="cell" id="11" readonly> </textarea>   
+                                                <textarea  class="cell" id="12" readonly> </textarea>   
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="main-container" id="AMSAM">
+                                        <div class="main-box">
+                                            <div class="grid">
+                                                <textarea  class="cell" id="1"readonly > </textarea>   
+                                                <textarea  class="cell" id="2"readonly > </textarea>   
+                                                <textarea  class="cell" id="3"readonly > </textarea>   
+                                                <textarea  class="cell" id="4"readonly > </textarea>   
+                                                <textarea  class="cell" id="5"readonly > </textarea>   
+                                
+                                                <div class="cell gap">AMSAM
+                                                </div>
+                                                <div class="cell gap"></div>
+                                
+                                                <textarea  class="cell" id="6"readonly > </textarea>   
+                                                <textarea  class="cell" id="7"readonly > </textarea>   
+                                                <div class="cell gap"></div>
+                                                <div class="cell gap"></div>
+                                                <textarea  class="cell" id="8"readonly > </textarea>   
+                                                <textarea  class="cell" id="9"readonly > </textarea>   
+                                                <textarea  class="cell" id="10"readonly > </textarea>   
+                                                <textarea  class="cell" id="11" readonly> </textarea>   
+                                                <textarea  class="cell" id="12"readonly > </textarea>   
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+    
                                 
                                 
 
@@ -842,18 +898,34 @@ function updateProfilePage(data) {
     const horoscopeData2 = JSON.parse(horoscopeData);
     console.log(horoscopeData2); // Log the arrays
 
-    const  box11 = horoscopeData2.box1; // Array of 12 elements
-    const box22 = horoscopeData2['box2'];
+    const  box11 = horoscopeData2.rasi; // Array of 12 elements
 
     
+
+  for (let i = 1; i <= 12; i++) {
+    const field = `field_${i}`;
+    const value = horoscopeData2.rasi[field] || "";
+    const textarea = document.querySelector(`#RASI textarea[id="${i}"]`);
+    if (textarea) {
+      textarea.value = value;
+    }
+  }
+
+  // Populate AMSAM section
+  for (let i = 1; i <= 12; i++) {
+    const field = `field_${i}`;
+    const value = horoscopeData2.amsam[field] || "";
+    const textarea = document.querySelector(`#AMSAM textarea[id="${i}"]`);
+    if (textarea) {
+      textarea.value = value;
+    }
+  }
     
     
 
     // Should be: string
 
-console.log(box11, box22 ); // Log the arrays
-
-const imagePath = profile.image_1;
+        const imagePath = profile.image_1;
 
     document.querySelector(".pro-pg-intro h1").textContent = profile.name;
     document.querySelector(".stat-1 b").textContent = `Regis.No #${profile.linked_to}`;

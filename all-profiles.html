@@ -472,8 +472,7 @@
                                 <label style="visibility: hidden;">religion</label>
 
                                 <select class="chosen-select">
-                                    <option>Religion</option>
-                                    <option>Any</option>
+                                    <option value="">Any</option>
                                     <option>Hindu</option>
                                     <option>Muslim</option>
                                     <option>Jain</option>
@@ -489,7 +488,7 @@
                                 <label style="visibility: hidden;">caste</label>
 
                                 <select class="chosen-select" name="addjbmaincate">
-                                    <option>Any</option>
+                                    <option value="">Any</option>
                                     <option>Adi Dravidar</option>
                                     <option>Paraiyar</option>
                                     <option>Devendrakula velalar</option>
@@ -516,7 +515,7 @@
                                 <label style="visibility: hidden;">sub_caste</label>
 
                                 <select class="chosen-select" name="addjbmaincate">
-                                    <option>Any</option>
+                                    <option value="">Any</option>
                                                                 <option>Sub cast No bar</option>
                                                                 <option>Gounder</option>
                                                                 <option>Naicker</option>
@@ -530,7 +529,7 @@
                         <div class="form-group">
                             <label style="visibility: hidden;">marital_status</label>
                             <select class="chosen-select" name="marital_status">
-                                <option>Marital status</option>
+                                <option value="">Marital status</option>
                                 <option>Any</option>
                                 <option>Unmarried</option>
                                 <option>Widow/Widower</option>
@@ -539,11 +538,6 @@
                             </select>
                         </div>
                     </div>
-
-
-
-
-                        
 
 
 
@@ -888,14 +882,18 @@
 
         console.log(label);
 
-        // Handle age range (Extract Min & Max Age)
-        if (formattedLabel.includes("age") && value.includes("to")) {
-            let [minAge, maxAge] = value.split(" to ").map(Number);
-            selectedValues["min_age"] = minAge;
-            selectedValues["max_age"] = maxAge;
-        } else {
-            selectedValues[formattedLabel] = value;
-        }
+        if (formattedLabel.includes("age")) {
+    if (value.includes("to")) {
+        let [minAge, maxAge] = value.split(" to ").map(Number);
+        selectedValues["min_age"] = minAge;
+        selectedValues["max_age"] = maxAge;
+    } else {
+        selectedValues["min_age"] = "";
+        selectedValues["max_age"] = "";
+    }
+} else {
+    selectedValues[formattedLabel] = value;
+}
     });
 
     console.log("Query Params:", selectedValues); // Debugging

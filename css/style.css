@@ -12507,3 +12507,138 @@ img#profileImage{
     max-width: 100%;
     object-fit: contain !important;
 }
+
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /* flex-wrap: wrap; */
+}
+
+wrapper1{
+    justify-content: space-between;
+    gap: 20px;
+    /* flex-wrap: wrap; */
+}
+
+/* Each container will stack vertically on smaller screens */
+.main-container {
+    text-align: center;
+    flex: 1;
+    min-width: 300px; /* Prevent from getting too narrow */
+    margin-bottom: 20px;
+}
+
+.main-box {
+    padding: 10px;
+    display: inline-block;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 5px;
+    justify-content: center;
+}
+
+.cell {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.gap {
+    border: none;
+    background-color: transparent;
+    font-style: italic;
+}
+
+/* 🌐 Media query for smaller screens (mobile) */
+@media (max-width: 768px) {
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+    }
+    
+    /* Each container will stack vertically on smaller screens */
+    .main-container {
+        text-align: center;
+        flex: 1;
+        min-width: 300px; /* Prevent from getting too narrow */
+        margin-bottom: 20px;
+    }
+    
+    .main-box {
+        padding: 10px;
+        display: inline-block;
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 75px);
+        grid-template-rows: repeat(4, 75px);
+        gap: 5px;
+        justify-content: center;
+    }
+    
+    .cell {
+        border: 1px solid black;
+        width: 75px;
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    
+    .gap {
+        border: none;
+        background-color: transparent;
+        font-style: italic;
+    }   
+}
+
+
+
+
+
+/* 
+ .wrapper {
+    display: flex; 
+    justify-content: space-between; 
+    gap: 0px; space between the two columns
+  } */
+/* 
+  .main-container {
+    flex: 1;
+  }
+
+  .main-box {
+    border: 1px solid #ccc;
+    padding: 0px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px;
+  }
+
+  .cell {
+    min-height: 50px;
+    width: 100%;
+  }
+
+  .gap {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px;
+  } */

@@ -941,12 +941,46 @@
                                         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
                                             <button type="button" class="btn btn-primary" onclick="printFormData()">Print Form Data</button>
                                             <button type="button" class="btn btn-success" onclick="generateProfilePDF()">Download PDF</button>
+
+                                            
                                           </div>
+
+                                         
+                                        
                                    </form>
                                    <div id="formDataOutput" style="margin-top: 20px;"></div>
 
                                 </div>
                         </div>
+
+                        <div class="form-tit">
+                            <h4>Reset password</h4>
+                            
+                        </div>
+
+                        <div class="row">   
+                            <div class="col-md-6 form-group">
+                              <label class="lb">User email</label>
+                              <input type="text" name="user_email" id="user_email" class="form-control2" readonly style="border: 1px solid #ccc;" >
+
+                            </div>
+                          
+                            <div class="col-md-6 form-group">
+                              <label class="lb">Password</label>
+                              <input type="text" name="password" id ="password" class="form-control2" style="border: 1px solid #ccc;">                            </div>
+                          </div>
+
+                          <button type="button"    id="resetBtn"  class="btn btn-primary mt-3" >Reset Password</button>
+
+                          <button type="button" id="convertRoleBtn" class="btn btn-warning mt-3 ms-2">
+                            Convert Role
+                          </button>
+                          
+
+
+                          
+                          
+                          
                     </div>
 
                 </div>
@@ -1047,6 +1081,106 @@
         }
         </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("resetBtn").addEventListener("click", resetPassword);
+    });
+  
+    function resetPassword() {
+      const emailInput = document.getElementById("user_email");
+      const passInput = document.getElementById("password");
+  
+      if (!emailInput || !passInput) {
+        alert("Missing input fields in DOM.");
+        return;
+      }
+  
+      const email = emailInput.value;
+      const password = passInput.value;
+  
+      if (!email) {
+        alert("Email not loaded yet.");
+        return;
+      }
+  
+      fetch("http://localhost:5000/api/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+        },
+        body: JSON.stringify({ mail_id: email, new_password: password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          passInput.value = data.newPassword;
+          alert("Password reset successfully!");
+        } else {
+          alert(data.message || "Failed to reset password.");
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("Something went wrong.");
+      });
+    }
+ 
+ 
+    document.getElementById("convertRoleBtn").addEventListener("click", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get("id") ; // Get the user_id    
+
+        const currentRole = sessionStorage.getItem("profile_user_id"); // Default to "user" if not found
+        console.log("Current Role:", currentRole); // Debugging line
+    let newRole;
+
+    if (!userId) {
+      alert("User ID not found.");
+      return;
+    }
+
+    // You can use the fetched role if available
+    if (currentRole === "moderator") {
+      newRole = "user";
+    } else {
+      newRole = "moderator";
+    }
+
+    const confirmed = confirm(`Are you sure you want to convert this user to "${newRole}" role?`);
+    if (!confirmed) return;
+
+    // API call to update role
+    fetch("http://localhost:5000/api/change-role", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        new_role: newRole
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert(`Role successfully changed to "${newRole}"`);
+        // Update localStorage or refresh UI if needed
+        localStorage.setItem("current_role", newRole);
+      } else {
+        alert(data.message || "Failed to change role.");
+      }
+    })
+    .catch(err => {
+      console.error("Error changing role:", err);
+      alert("Something went wrong.");
+    });
+  });
+ 
+ </script>
+  
+
 
 
 
@@ -1127,7 +1261,7 @@ function getQueryParam(param) {
 console.log("User ID from localStorage:", id);
                 
     // Replace with your actual API endpoint
-    fetch(`http://159.89.174.77:5000/api/profile/${id}`)
+    fetch(`http://localhost:5000/api/view-profile/${id}`)
         .then(response => response.json())  // Convert response to JSON
         .then(data => {
             console.log("Fetched data:", data); // Debugging line
@@ -1175,6 +1309,10 @@ console.log("User ID from localStorage:", id);
         document.getElementById('profile-photo2').src = `http://159.89.174.77:5000/${correctedPath2}`;
 
 
+        sessionStorage.setItem("profile_user_id", data.data["role"]);
+ 
+
+
 
 
         const dateOfBirth = new Date(data.data["date_of_birth"]);
@@ -1206,6 +1344,10 @@ document.querySelector("[name='disability']").value = data.data["disability"] ||
 document.querySelector("[name='complexion']").value = data.data["complexion"] || "";
 
 
+
+document.querySelector("[name='user_email']").value = data.data["mail_id"] || "";
+
+
         
         })
         .catch(error => console.error("Error fetching profile data:", error));
@@ -1213,6 +1355,8 @@ document.querySelector("[name='complexion']").value = data.data["complexion"] ||
 
 
         </script>
+
+        
 
         <script>
 
@@ -1457,6 +1601,9 @@ async function generateProfilePDF() {
 
 
         </script>
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
