@@ -307,8 +307,8 @@
                                 <span class="pop-pln d-block mb-2">Most popular plan</span>
                                 <h2>Gold</h2>
                                 <p>Printer took a type and scrambled</p>
-                                <a href="sign-up.html" class="cta btn btn-warning">Get Started</a>
-                                <span class="pri-cou d-block mt-2"><b>&#8377;</b> 500</span>
+                                <button class="cta btn btn-warning" onclick="startPayment()">Get Started</button>
+<span class="pri-cou d-block mt-2"><b>&#8377;</b> 500</span>
                                 <ol class="list-unstyled mt-3">
                                     <li><i class="fa fa-check" aria-hidden="true"></i>  Unlimited profile </li>
                                     <li><i class="fa fa-check" aria-hidden="true"></i>  Free user profile can you</li>
@@ -456,12 +456,108 @@ try {
     return "viewer";
 }
 }
+
+async function startPayment() {
+  const token = localStorage.getItem("access_token");
+  console.log("Token:", token); // Debug
+  const user_id = getUserIdFromToken(token); // Call the function to get user ID from token
+
+
+  if (!token) {
+    alert("You must be logged in to make a payment.");
+    return;
+  }
+
+  const res = await fetch("http://159.89.174.77:5000/api/create-order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  const data = await res.json();
+  const order = data.order;
+
+  const options = {
+    key: "rzp_test_FaDMhj1BABXeNp", // Razorpay public key
+    amount: order.amount,
+    currency: order.currency,
+    name: "Aahakalyanam",
+    description: "Premium Membership",
+    order_id: order.id,
+    handler: async function (response) {
+      console.log("Payment successful:", response);
+
+      // 🎯 Update user role after payment
+      try {
+        const upgradeRes = await fetch("http://159.89.174.77:5000/api/promote-to-moderator", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            register_number: user_id, // Use the extracted user ID
+          })
+        });
+
+        const upgradeResult = await upgradeRes.json();
+
+        if (upgradeRes.ok) {
+          alert("Payment successful & role updated!");
+          // Optionally reload or redirect
+          // window.location.href = "dashboard.html";
+        } else {
+          alert(upgradeResult.message || "Payment succeeded, but failed to update role.");
+        }
+
+      } catch (err) {
+        console.error("Error upgrading role:", err);
+        alert("Payment succeeded, but role upgrade failed.");
+      }
+    },
+    prefill: {
+      name: "Test User",
+      email: "test@example.com",
+      contact: "9876543210"
+    },
+    theme: {
+      color: "#3399cc"
+    }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+
+function getUserIdFromToken(token) {
+    try {
+
+        console.log(token); // Debugging
+        const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload
+        console.log(payload); // Debugging
+        if (!payload || !payload.user_id) {
+            throw new Error("Invalid token payload");
+        }
+        return payload.user_id; // Extract user_id from token payload
+    } catch (error) {
+        console.error("Error decoding token:", error);
+        return null;
+    }
+}
+
   
 
 
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

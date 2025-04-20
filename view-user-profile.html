@@ -280,6 +280,9 @@
                         <div class="rhs">
                                 <div class="form-login">
                                     <form id="myForm">
+
+                                        <input type="hidden" id="linked_to" name="linked_to" />
+
                                         <!--PROFILE BIO-->
                                         <!-- <div class="edit-pro-parti">
                                             <div class="form-tit">
@@ -315,7 +318,9 @@
                                                 <h4>Basic info</h4>
                                                 <h1>Advanced bio/மேம்பட்ட உயிர்
                                                 </h1>
+                                                
                                             </div>
+                                            
                                             <div class="row">
                                                 <div class="col-md-6 form-group">
                                                     <label class="lb">Name/பெயர் </label>
@@ -937,13 +942,15 @@
 
 
 
-
+                                          <button id="editBtn" onclick="handleEditProfileClick(event)">Edit</button>
+                                          <button id="submitBtn" style="display:none;">Submit</button>
                                         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
                                             <button type="button" class="btn btn-primary" onclick="printFormData()">Print Form Data</button>
                                             <button type="button" class="btn btn-success" onclick="generateProfilePDF()">Download PDF</button>
 
                                             
                                           </div>
+                                          
 
                                          
                                         
@@ -1218,18 +1225,6 @@
     }
 
 
-//     function generatePDF() {
-//     const biodataContent = document.getElementById("biodata");
-//     const opt = {
-//         margin: 0,
-//         filename: 'matrimony_profile.pdf',
-//         image: { type: 'jpeg', quality: 1 },
-//         html2canvas: { scale: 2 },
-//         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-//     };
-//     html2pdf().from(biodataContent).set(opt).save();
-// }
-
 
   </script>
   
@@ -1361,121 +1356,75 @@ document.querySelector("[name='user_email']").value = data.data["mail_id"] || ""
         <script>
 
 
-// function fillProfileTemplate() {
-//   const getValue = name => document.querySelector(`[name="${name}"]`)?.value || "-";
 
-//   document.getElementById("nameField").innerText = getValue("name");
-//   document.getElementById("qualificationField").innerText = getValue("qualification");
-//   document.getElementById("jobField").innerText = getValue("job");
-//   document.getElementById("salaryField").innerText = getValue("income_per_month"); // 'salary' = 'income_per_month'
-//   document.getElementById("heightField").innerText = getValue("height");
-//   document.getElementById("casteField").innerText = getValue("caste");
-//   document.getElementById("regNoField").innerText = getValue("register_number"); // Make sure this exists
-//   document.getElementById("fatherField").innerText = getValue("father_name");
-//   document.getElementById("motherField").innerText = getValue("mother_name");
-//   document.getElementById("siblingsField").innerText = getValue("no_of_siblings");
-//   document.getElementById("addressField").innerText = getValue("permanent_address");
-//   document.getElementById("contactField").innerText = getValue("contact_number");
-//   document.getElementById("cityField").innerText = getValue("city");
-//   document.getElementById("dobField").innerText = getValue("date_of_birth");
-//   document.getElementById("tobField").innerText = getValue("time_of_birth");
-//   document.getElementById("raasiField").innerText = getValue("raasi");
-//   document.getElementById("laknamField").innerText = getValue("laknam");
+function handleEditProfileClick(event) {
+    // Assuming `data` is already available from your fetch
+    event.preventDefault(); // Stop default form submit behavior
 
-//   // Fetch profile photo set by API earlier
-//   const profileImg = document.getElementById("profile-photo1"); // set earlier in your fetch logic
-//   if (profileImg && profileImg.src) {
-//     document.getElementById("profilePhoto").src = profileImg.src;
-//   }
-
-//   // Optional: fallback if the user uploads a file instead of relying on API image
-//   const fileInput = document.querySelector(`input[name="photo"]`);
-//   if (fileInput?.files[0]) {
-//     const reader = new FileReader();
-//     reader.onload = function (e) {
-//       document.getElementById("profilePhoto").src = e.target.result;
-//     };
-//     reader.readAsDataURL(fileInput.files[0]);
-//   }
-
-
-  
-// }
-
-// function fillProfileTemplate() {
-//   return new Promise((resolve) => {
-//     const getValue = name => document.querySelector(`[name="${name}"]`)?.value || "-";
-
-//     document.getElementById("nameField").innerText = getValue("name");
-//     document.getElementById("qualificationField").innerText = getValue("qualification");
-//     document.getElementById("jobField").innerText = getValue("job");
-//     document.getElementById("salaryField").innerText = getValue("income_per_month");
-//     document.getElementById("heightField").innerText = getValue("height");
-//     document.getElementById("casteField").innerText = getValue("caste");
-//     document.getElementById("regNoField").innerText = getValue("register_number");
-//     document.getElementById("fatherField").innerText = getValue("father_name");
-//     document.getElementById("motherField").innerText = getValue("mother_name");
-//     document.getElementById("siblingsField").innerText = getValue("no_of_siblings");
-//     document.getElementById("addressField").innerText = getValue("permanent_address");
-//     document.getElementById("contactField").innerText = getValue("contact_number");
-//     document.getElementById("cityField").innerText = getValue("city");
-//     document.getElementById("dobField").innerText = getValue("date_of_birth");
-//     document.getElementById("tobField").innerText = getValue("time_of_birth");
-//     document.getElementById("raasiField").innerText = getValue("raasi");
-//     document.getElementById("laknamField").innerText = getValue("laknam");
-
-//     const profilePhoto = document.getElementById("profilePhoto");
-
-//     // Check for uploaded file
-//     const fileInput = document.querySelector(`input[name="photo"]`);
-//     if (fileInput?.files[0]) {
-//       const reader = new FileReader();
-//       reader.onload = function (e) {
-//         profilePhoto.onload = () => resolve(); // wait for image to load
-//         profilePhoto.src = e.target.result;
-//       };
-//       reader.readAsDataURL(fileInput.files[0]);
-//     } else {
-//       // Use fallback image or existing image
-//       const profileImg = document.getElementById("profile-photo1");
-//       if (profileImg && profileImg.src) {
-//         profilePhoto.onload = () => resolve(); // wait for image to load
-//         profilePhoto.src = profileImg.src;
-//       } else {
-//         // fallback immediately
-//         profilePhoto.src = "default-profile.png";
-//         profilePhoto.onload = () => resolve();
-//       }
-//     }
-//   });
-// }
+    let id = getQueryParam("id");
 
 
 
-// async function generateProfilePDF() {
-//   fillProfileTemplate(); // Fill data into the template
 
-//   const template = document.getElementById("profileTemplate");
-//   template.style.display = "block"; // temporarily show it for rendering
+    const profileData = {
+        caste: document.querySelector("[name='caste']").value,
+        sub_caste: document.querySelector("[name='sub_caste']").value,
+        religion: document.querySelector("[name='religion']").value,
+        gowthram: document.querySelector("[name='gowthram']").value,
+        star: document.querySelector("[name='star']").value,
+        raasi: document.querySelector("[name='raasi']").value,
+        padam: document.querySelector("[name='padam']").value,
+        laknam: document.querySelector("[name='laknam']").value,
+        job: document.querySelector("[name='job']").value,
+        place_of_job: document.querySelector("[name='place_of_job']").value,
+        income_per_month: document.querySelector("[name='income_per_month']").value,
+        qualification: document.querySelector("[name='qualification']").value,
+        permanent_address: document.querySelector("[name='permanent_address']").value,
+        present_address: document.querySelector("[name='present_address']").value,
+        contact_person: document.querySelector("[name='contact_person']").value,
+        contact_number: document.querySelector("[name='contact_number']").value,
+        partner_job: document.querySelector("[name='partner_job']").value,
+        partner_qualification: document.querySelector("[name='partner_qualification']").value,
+        partner_income: document.querySelector("[name='partner_income']").value,
+        partner_job_availability: document.querySelector("[name='partner_job_availability']").value,
+        preferred_age: document.querySelector("[name='preferred_age']").value,
+        partner_diet: document.querySelector("[name='partner_diet']").value,
+        horoscope_required: document.querySelector("[name='horoscope_required']").value,
+        partner_marital_status: document.querySelector("[name='partner_marital_status']").value,
+        partner_caste: document.querySelector("[name='partner_caste']").value,
+        partner_sub_caste: document.querySelector("[name='partner_sub_caste']").value,
+        name: document.querySelector("[name='name']").value,
+        age: document.querySelector("[name='age']").value,
+        gender: document.querySelector("[name='gender']").value,
+        city: document.querySelector("[name='city']").value,
+        date_of_birth: document.querySelector("[name='date_of_birth']").value,
+        time_of_birth: document.querySelector("[name='time_of_birth']").value,
+        place: document.querySelector("[name='place']").value,
+        father_name: document.querySelector("[name='father_name']").value,
+        mother_name: document.querySelector("[name='mother_name']").value,
+        father_job: document.querySelector("[name='father_job']").value,
+        mother_job: document.querySelector("[name='mother_job']").value,
+        no_of_siblings: document.querySelector("[name='no_of_siblings']").value,
+        siblings_marital_status: document.querySelector("[name='siblings_marital_status']").value,
+        marital_status: document.querySelector("[name='marital_status']").value,
+        mother_tongue: document.querySelector("[name='mother_tongue']").value,
+        height: document.querySelector("[name='height']").value,
+        weight: document.querySelector("[name='weight']").value,
+        blood_group: document.querySelector("[name='blood_group']").value,
+        disability: document.querySelector("[name='disability']").value,
+        complexion: document.querySelector("[name='complexion']").value,
+        mail_id: document.querySelector("[name='user_email']").value
+    };
 
-//   // Wait for layout/rendering
-//   await new Promise(resolve => setTimeout(resolve, 300));
 
+    console.log(    "Profile Data:", profileData); // Debugging line
+    // Save to sessionStorage
+    sessionStorage.setItem("editableProfileData", JSON.stringify(profileData));
 
-//   html2canvas(template).then(canvas => {
-//     const imgData = canvas.toDataURL("image/png");
-//     const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+    // Redirect to edit page
+    window.location.href = `user-profile-edit.html?id=${encodeURIComponent(id)}`;
+}
 
-//     const imgProps = pdf.getImageProperties(imgData);
-//     const pdfWidth = pdf.internal.pageSize.getWidth();
-//     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-//     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-//     pdf.save("profile_summary.pdf");
-
-//     // template.style.display = "none"; // hide it again
-//   });
-// }
 
 
 

@@ -488,48 +488,86 @@
     <!-- Optional JavaScript -->
 
     <script>
-        document.getElementById("registerForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Prevent form from submitting the default way
-        
-            // Get form data
-            const formData = new FormData(this);
-            const userData = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                phone: formData.get("phone"),
-                password: formData.get("pswd"),
-                gender: formData.get("gender")
 
-            };
 
-            console.log(userData); // Log the user data to the console for debugging
-        
-            try {
-                const response = await fetch("http://159.89.174.77:5000/api/createUser", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(userData)
-                });
-        
-                const result = await response.json();
-        
-                if (response.ok) {
-                    // Store token in sessionStorage
-                    sessionStorage.setItem("accessToken", result.accessToken);
-        
-                    // Redirect to index.html
-                    window.location.href = "index.html";
-                } else {
-                    alert(result.message || "Registration failed.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Something went wrong. Please try again later.");
-            }
+function getUserRoleFromToken() {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) return "viewer"; // Not signed in
+
+    try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const role = payload.role || "viewer"; // adjust if your payload key is different
+        localStorage.setItem("user_role", role); // Store role for later use
+        return role;
+    } catch (err) {
+        console.error("Failed to decode token", err);
+        return "viewer";
+    }
+}
+
+
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent form from submitting the default way
+
+    const role = getUserRoleFromToken(); // Assuming this correctly fetches from decoded JWT or session
+
+    console.log("Detected User Role:", role); // Debug
+
+    // Get form data
+    const formData = new FormData(this);
+    const userData = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        password: formData.get("pswd"),
+        gender: formData.get("gender")
+    };
+
+    console.log("User Data to be submitted:", userData); // Debugging
+
+    try {
+        const response = await fetch("http://159.89.174.77:5000/api/createUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
         });
-        </script>
+
+        const result = await response.json();
+
+        console.log("Server Response:", result); // Debugging
+
+        if (response.ok) {
+            if (role === "viewer") {
+                // Store token for viewer
+                sessionStorage.setItem("accessToken", result.accessToken);
+                window.location.href = "index.html"; // Go to viewer homepage
+            } else if (role === "admin") {
+                // Store registered user ID from result
+                const registeredUserId = result.message.user_id; // Adjust based on actual response key
+                console.log("Registered User ID:", registeredUserId); // Debugging
+                if (registeredUserId) {
+                    sessionStorage.setItem("registered_user_id", registeredUserId);
+                    window.location.href = "create-user-profile.html"; // Go to profile creation page
+                } else {
+                    alert("Registered user ID not returned from server.");
+                }
+            } else {
+                alert("Unrecognized role. Cannot proceed.");
+            }
+        } else {
+            alert(result.message || "Registration failed.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again later.");
+    }
+});
+
+       
+       </script>
         
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery.min.js"></script>

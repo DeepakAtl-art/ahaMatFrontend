@@ -539,7 +539,7 @@
                                             <li><b>Rasi:</b> MEENAM</li>                                        
                                             <li><b>Mother Tongue:</b> Tamil</li>
                                             <li><b>Disability (If any):</b> No</li>
-                                            <li><b>Parents Alive:</b> Yes, Both Alive</li>
+                                            <!-- <li><b>Parents Alive:</b> Yes, Both Alive</li> -->
                                             <li><b>Father's Job:</b> Gov.Employee</li>
                                             <li><b>Mother's Job:</b> Homemaker</li>
                                             <li><b>Siblings:</b> 1 Younger Brother</li>
@@ -965,7 +965,6 @@ function updateProfilePage(data) {
         <li><b>Rasi:</b> ${profile.raasi || 'N/A'}</li>
         <li><b>Mother Tongue:</b> ${profile.mother_tongue || 'N/A'}</li>
         <li><b>Disability (If any):</b> ${profile.disability || 'None'}</li>
-        <li><b>Parents Alive:</b> ${profile.parents_alive || 'N/A'}</li>
         <li><b>Father's Job:</b> ${profile.father_job || 'N/A'}</li>
         <li><b>Mother's Job:</b> ${profile.mother_job || 'N/A'}</li>
         <li><b>Siblings:</b> ${profile.no_of_siblings ? profile.no_of_siblings + ' Siblings' : 'N/A'}</li>
@@ -983,8 +982,8 @@ function updateProfilePage(data) {
     const contactInfoContainer = document.querySelector(".pr-bio-conta ul");
         contactInfoContainer.innerHTML = `
             <li><span><i class="fa fa-mobile" aria-hidden="true"></i><b>Phone:</b> ${profile.contact_number || 'N/A'}</span></li>
-            <li><span><i class="fa fa-envelope-o" aria-hidden="true"></i><b>Email:</b> ${profile.email || 'N/A'}</span></li>
-            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i><b>Address:</b> ${profile.address || 'N/A'}</span></li>
+            <li><span><i class="fa fa-envelope-o" aria-hidden="true"></i><b>Contact person name:</b> ${profile.contact_person || 'N/A'}</span></li>
+            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i><b>Address:</b> ${profile.permanent_address || 'N/A'}</span></li>
         `;
 
         

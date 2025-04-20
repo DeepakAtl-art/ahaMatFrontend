@@ -285,6 +285,9 @@
                         <div class="rhs">
                                 <div class="form-login">
                                     <form id="myForm">
+
+                                        <input type="hidden" id="linked_to" name="linked_to" />
+
                                         <!--PROFILE BIO-->
                                         <!-- <div class="edit-pro-parti">
                                             <div class="form-tit">
@@ -963,6 +966,63 @@
 
 
     <script>
+
+function decodeToken(token) {
+    try {
+        const payload = token.split('.')[1];
+        const decoded = atob(payload);
+        return JSON.parse(decoded);
+    } catch (e) {
+        console.error("Failed to decode token", e);
+        return null;
+    }
+}
+
+
+
+window.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+        alert("No access token found. Please login.");
+        // return window.location.href = "login.html";
+    }
+
+    console.log("Access Token:", token); // Log the access token for debugging
+
+    const decoded = decodeToken(token);
+    if (!decoded) {
+        alert("Invalid token. Please login again.");
+        // return window.location.href = "login.html";
+    }
+
+    const role = decoded.role;
+    const currentUserId = decoded.id || decoded.user_id; // Adjust based on token structure
+
+    console.log("User Role:", role);
+    console.log("Current User ID from Token:", currentUserId);
+
+    let linkedTo = "";
+
+    if (role === "admin") {
+        linkedTo = sessionStorage.getItem("registered_user_id");
+    } else if (role === "moderator") {
+        linkedTo = currentUserId;
+    }
+
+    if (linkedTo) {
+        document.getElementById("linked_to").value = linkedTo;
+        console.log("Linked To ID:", linkedTo);
+    } else {
+        alert("Could not determine linked user. Please try again.");
+        // window.location.href = "register.html";
+    }
+});
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", function () {
 
 

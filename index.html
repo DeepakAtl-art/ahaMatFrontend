@@ -514,7 +514,7 @@
                                                         <div class="form-group">
                                                             <label>age</label>
                                                             <select class="chosen-select form-control">
-                                                                <option value="">Age</option>
+                                                                    <option value="">Age</option>
                                                                 <option value="18 to 30">18 to 30</option>
                                                                 <option value="31 to 40">31 to 40</option>
                                                                 <option value="41 to 50">41 to 50</option>
@@ -530,8 +530,7 @@
                                                         <div class="form-group">
                                                             <label>religion</label>
                                                             <select class="chosen-select form-control">
-                                                                <option>Religion</option>
-                                                                <option>Any</option>
+                                                                <option value="">Religion</option>
                                                                 <option>Hindu</option>
                                                                 <option>Muslim</option>
                                                                 <option>Jain</option>
@@ -543,8 +542,7 @@
                                                         <div class="form-group">
                                                             <label>sub_caste</label>
                                                             <select class="chosen-select form-control">
-                                                                <option>Sub-caste</option>
-                                                                <option value="Any">Any</option>
+                                                                <option value="">Sub-caste</option>
                                                                 <option value="Sub cast No bar">Sub cast No bar</option>
                                                                 <option value="Gounder">Gounder</option>
                                                                 <option value="Naicker">Naicker</option>
@@ -557,7 +555,7 @@
                                                             <label>caste</label>
 
                                                             <select class="chosen-select form-control">
-                                                                <option value="caste">Caste</option>
+                                                                <option value="">Caste</option>
                                                                 <option value="Any">Any</option>
                                                                 <option value="Adi Dravidar">Adi Dravidar</option>
                                                                 <option value="Paraiyar">Paraiyar</option>
@@ -583,8 +581,7 @@
                                                         <div class="form-group">
                                                             <label>marital_status</label>
                                                             <select class="chosen-select form-control">
-                                                                <option>Marital status</option>
-                                                                <option>Any</option>
+                                                                <option value="">Marital Status</option>
                                                                 <option>Unmarried</option>
                                                                 <option>Widow/Widower</option>
                                                                 <option>Divorce</option>
@@ -1656,15 +1653,20 @@ document.getElementById("logoutBtn").addEventListener("click", async function (e
             // Convert label to lowercase and replace spaces with underscores
             let formattedLabel = label.toLowerCase().replace(/\s+/g, "_");
 
-            // Handle age range (Extract Min & Max Age)
-            if (formattedLabel === "age" && value.includes("to")) {
-                let [minAge, maxAge] = value.split(" to ").map(Number);
-                selectedValues["min_age"] = minAge;
-                selectedValues["max_age"] = maxAge;
-            } else {
-                selectedValues[formattedLabel] = value;
-            }
-        });
+            
+        if (formattedLabel.includes("age")) {
+    if (value.includes("to")) {
+        let [minAge, maxAge] = value.split(" to ").map(Number);
+        selectedValues["min_age"] = minAge;
+        selectedValues["max_age"] = maxAge;
+    } else {
+        selectedValues["min_age"] = "";
+        selectedValues["max_age"] = "";
+    }
+} else {
+    selectedValues[formattedLabel] = value;
+}
+    });
 
         console.log("Query Params:", selectedValues); // Debugging
 
@@ -1683,7 +1685,7 @@ document.getElementById("logoutBtn").addEventListener("click", async function (e
                 sessionStorage.setItem("searchResponse", JSON.stringify(responseData));
 
                 // Redirect to the results page
-                // window.location.href = "filtered-profiles.html";
+                window.location.href = "filtered-profiles.html";
 
                 // window.location.href = "all-profiles.html"; 
             } else {

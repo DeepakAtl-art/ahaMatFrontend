@@ -1141,18 +1141,18 @@
                 <li>
                     <div class="all-pro-box">
                         <div class="pro-img">
-                            <a href="profile-details.html?userId=${profile.linked_to}">
-                                <img src="${profile.image_1 || 'default.jpg'}" alt="">
+                            <a href="profile-details.html?userId=${profile.id}">
+                                <img src="http://159.89.174.77:5000/${profile.image_1}" alt="">
                             </a>
                         </div>
                         <div class="pro-detail">
-                            <h4><a href="profile-details.html?userId=${profile.linked_to}">${profile.name}</a></h4>
+                            <h4><a href="profile-details.html?userId=${profile.id}">${profile.name}</a></h4>
                             <div class="pro-bio">
                                 <span>City: ${profile.city}</span>
                                 <span>Age: ${profile.age}</span>
                                 <span>Job: ${profile.job || "Not available"}</span>
                             </div>
-                            <a href="profile-details.html?userId=${profile.linked_to}">More details</a>
+                            <a href="profile-details.html?userId=${profile.id}">More details</a>
                         </div>
                     </div>
                 </li>
