@@ -12543,10 +12543,28 @@ wrapper1{
     justify-content: center;
 }
 
+.grid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: repeat(4, 75px);
+    gap: 5px;
+    justify-content: center;
+}
+
 .cell {
     border: 1px solid black;
     width: 100px;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.cell1 {
+    border: 1px solid black;
+    width: 75px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;

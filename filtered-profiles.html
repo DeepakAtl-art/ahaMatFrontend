@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <!--== FAV ICON(BROWSER TAB ICON) ==-->
-    <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <!--== CSS FILES ==-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -1114,6 +1114,83 @@
 
 
  
+
+    <script>
+
+
+
+        const role = getUserRoleFromToken();
+        
+        console.log("Detected User Role:", role); // Debug
+        
+        // Default: hide all controlled elements
+        document.querySelector(".plans-link")?.classList.add("hide");
+        document.querySelector(".register-link")?.classList.add("hide");
+        document.querySelector(".dashboard-section")?.classList.add("hide");
+        document.querySelector(".my-profile")?.classList.add("hide");
+        document.querySelector(".registering-link")?.classList.add("hide");
+        
+        
+        
+        
+        document.querySelector(".signin-only")?.classList.add("hide");
+        document.querySelector(".logout-only")?.classList.add("hide");
+        document.querySelector(".user-profile.html")?.classList.add("hide");
+        
+        
+        
+        
+        // Show based on role   
+        switch (role) {
+        case "admin":
+            document.querySelector(".plans-link")?.classList.remove("hide");
+            document.querySelector(".register-link")?.classList.remove("hide");
+            document.querySelector(".dashboard-section")?.classList.remove("hide");
+            document.querySelector(".logout-only")?.classList.remove("hide");
+            break;
+        case "moderator":
+        document.querySelector(".my-profile")?.classList.remove ("hide");
+        document.querySelector(".logout-only")?.classList.remove("hide");
+        
+        
+            break;
+        case "user":
+            document.querySelector(".plans-link")?.classList.remove("hide");
+            document.querySelector(".logout-only")?.classList.remove("hide");
+            document.querySelector(".user-profile.html")?.classList.remove("hide");
+            document.querySelector(".registering-link")?.classList.remove("hide");
+            document.querySelector(".my-profile")?.classList.remove ("hide");
+        
+        
+        
+            break;
+        case "viewer": // not signed in
+            document.querySelector(".signin-only")?.classList.remove("hide");
+        
+        default:
+            document.querySelector(".signin-only")?.classList.remove("hide");
+            break;
+        }
+        
+
+        
+        
+                function getUserRoleFromToken() {
+        const token = localStorage.getItem("access_token");
+        
+        if (!token) return "viewer"; // Not signed in
+        
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            const role = payload.role || "viewer"; // adjust if your payload key is different
+            localStorage.setItem("user_role", role); // Store role for later use
+            return role;
+        } catch (err) {
+            console.error("Failed to decode token", err);
+            return "viewer";
+        }
+        }
+        </script>
 
 
 <script>

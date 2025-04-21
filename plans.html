@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <!--== FAV ICON(BROWSER TAB ICON) ==-->
-    <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <!--== CSS FILES ==-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -307,7 +307,7 @@
                                 <span class="pop-pln d-block mb-2">Most popular plan</span>
                                 <h2>Gold</h2>
                                 <p>Printer took a type and scrambled</p>
-                                <button class="cta btn btn-warning" onclick="startPayment()">Get Started</button>
+                                <a class="cta btn btn-warning" onclick="startPayment()">Get Started</a>
 <span class="pri-cou d-block mt-2"><b>&#8377;</b> 500</span>
                                 <ol class="list-unstyled mt-3">
                                     <li><i class="fa fa-check" aria-hidden="true"></i>  Unlimited profile </li>
@@ -383,36 +383,52 @@ const role = getUserRoleFromToken();
 console.log("Detected User Role:", role); // Debug
 
 // Default: hide all controlled elements
-document.querySelector(".register-link")?.classList.add("hide");
-document.querySelector(".user-profile.html")?.classList.add("hide");
 document.querySelector(".plans-link")?.classList.add("hide");
+document.querySelector(".register-link")?.classList.add("hide");
+document.querySelector(".dashboard-section")?.classList.add("hide");
+document.querySelector(".my-profile")?.classList.add("hide");
+document.querySelector(".registering-link")?.classList.add("hide");
+
+
+
+
 document.querySelector(".signin-only")?.classList.add("hide");
-document.querySelector(".smenu-pare")?.classList.add("hide");
+document.querySelector(".logout-only")?.classList.add("hide");
+document.querySelector(".user-profile.html")?.classList.add("hide");
 
 
-// Show based on role
+
+
+// Show based on role   
 switch (role) {
-    case "admin":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".register-link")?.classList.remove("hide");
-        document.querySelector(".dashboard-section")?.classList.remove("hide");
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
-    case "moderator":
-        document.querySelector(".register-link")?.classList.remove("hide");
-        document.querySelector(".dashboard-section")?.classList.remove("hide");
-        break;
-    case "user":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".user-profile.html")?.classList.remove("hide");
+case "admin":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".register-link")?.classList.remove("hide");
+    document.querySelector(".dashboard-section")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    break;
+case "moderator":
+document.querySelector(".my-profile")?.classList.remove ("hide");
+document.querySelector(".logout-only")?.classList.remove("hide");
 
 
-        break;
-    case "viewer": // not signed in
+    break;
+case "user":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    document.querySelector(".user-profile.html")?.classList.remove("hide");
+    document.querySelector(".registering-link")?.classList.remove("hide");
+    document.querySelector(".my-profile")?.classList.remove ("hide");
 
-    default:
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
+
+
+    break;
+case "viewer": // not signed in
+    document.querySelector(".signin-only")?.classList.remove("hide");
+
+default:
+    document.querySelector(".signin-only")?.classList.remove("hide");
+    break;
 }
 
 // if (role === "user" || role === "viewer") {

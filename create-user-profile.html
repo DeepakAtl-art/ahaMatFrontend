@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <!--== FAV ICON(BROWSER TAB ICON) ==-->
-    <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <!--== CSS FILES ==-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -1022,11 +1022,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
 
-        document.addEventListener("DOMContentLoaded", function () {
-
-
-                   
 const role = getUserRoleFromToken();
 
 console.log("Detected User Role:", role); // Debug
@@ -1035,33 +1032,51 @@ console.log("Detected User Role:", role); // Debug
 document.querySelector(".plans-link")?.classList.add("hide");
 document.querySelector(".register-link")?.classList.add("hide");
 document.querySelector(".dashboard-section")?.classList.add("hide");
-document.querySelector(".signin-only")?.classList.add("hide");
 document.querySelector(".my-profile")?.classList.add("hide");
+document.querySelector(".registering-link")?.classList.add("hide");
 
 
-// Show based on role
+
+
+document.querySelector(".signin-only")?.classList.add("hide");
+document.querySelector(".logout-only")?.classList.add("hide");
+document.querySelector(".user-profile.html")?.classList.add("hide");
+
+
+
+
+// Show based on role   
 switch (role) {
-    case "admin":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".register-link")?.classList.remove("hide");
-        document.querySelector(".dashboard-section")?.classList.remove("hide");
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
-    case "moderator":
-        document.querySelector(".register-link")?.classList.remove("hide");
-        document.querySelector(".my-profile")?.classList.remove("hide");
+case "admin":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".register-link")?.classList.remove("hide");
+    document.querySelector(".dashboard-section")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    break;
+case "moderator":
+document.querySelector(".my-profile")?.classList.remove ("hide");
+document.querySelector(".logout-only")?.classList.remove("hide");
 
-        break;
-    case "user":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".register-link")?.classList.remove("hide");
 
-        break;
-    case "viewer": // not signed in
-    default:
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
+    break;
+case "user":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    document.querySelector(".user-profile.html")?.classList.remove("hide");
+    document.querySelector(".registering-link")?.classList.remove("hide");
+    document.querySelector(".my-profile")?.classList.remove ("hide");
+
+
+
+    break;
+case "viewer": // not signed in
+    document.querySelector(".signin-only")?.classList.remove("hide");
+
+default:
+    document.querySelector(".signin-only")?.classList.remove("hide");
+    break;
 }
+
 
 function getUserRoleFromToken() {
 const token = localStorage.getItem("access_token");
@@ -1069,97 +1084,22 @@ const token = localStorage.getItem("access_token");
 if (!token) return "viewer"; // Not signed in
 
 try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    const role = payload.role || "viewer"; // adjust if your payload key is different
-    localStorage.setItem("user_role", role); // Store role for later use
-    return role;
+const payload = JSON.parse(atob(token.split(".")[1]));
+const role = payload.role || "viewer"; // adjust if your payload key is different
+localStorage.setItem("user_role", role); // Store role for later use
+return role;
 } catch (err) {
-    console.error("Failed to decode token", err);
-    return "viewer";
+console.error("Failed to decode token", err);
+return "viewer";
 }
 }
 
 
-function collectHoroscopeValues() {
-        const boxes = document.querySelectorAll('.horoscope-box');
-        let data = [];
-
-        boxes.forEach(box => {
-            data.push({
-                id: box.getAttribute('data-id'),
-                value: box.value
-            });
-        });
-
-        console.log(data); // This is the array to send to the DB
-        return data;
-    }
-
-
-
-            document.querySelector("#myForm").addEventListener("submit", async function (event) {   
-                event.preventDefault(); // Prevent default form submission
-                const data = collectDataAndSubmitForm();
-
-
+fetchProfiles(); // Fetch profiles on page load
+});
 
 
         
-                let formData = new FormData(this); // Collect form data
-
-                console.log(formData.get("time_of_birth"));
-            
-
-                
-                const userId = localStorage.getItem("viewProfileUserId");
-
-
-
-        
-                // 🎁 Append the horoscope JSON to formData
-                formData.append("horoscope", JSON.stringify(data));
-        
-                // Optional: log it to verify
-                console.log("Horoscope JSON:", JSON.stringify(data, null, 2));
-                        
-                const accessToken = localStorage.getItem("access_token");
-
-                console.log("Access Token:", accessToken);
-
-
-                console.log("Access Token:", accessToken); // Log the access token for debugging
-                console.log("Form Data:", formData); // Log the form data for debugging
-        
-                try {
-                    let response = await fetch("http://159.89.174.77:5000/api/registerProfile", {
-                        method: "POST",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
-                        body: formData
-                    });
-        
-                    let result = await response.json();
-
-                    console.log(result);
-                    sessionStorage.setItem("registeredProfile", JSON.stringify(result));
-
-        
-                    if (response.ok) {  
-                        alert("Form submitted successfully!");
-                        window.location.href = "index.html";
-                    } else {
-                        alert("Error: " + result.message);
-                    }
-                } catch (error) {
-                    console.error("Submission failed:", error);
-                    alert("Something went wrong. Please try again.");
-                }
-            });
-    
-    
-    
-        });
         </script>
         
 

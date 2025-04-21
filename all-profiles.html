@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <!--== FAV ICON(BROWSER TAB ICON) ==-->
-    <link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <!--== CSS FILES ==-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -861,70 +861,69 @@
 
 
 <script>
-   
-   document.getElementById("submitBtn").addEventListener("click", async function (event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get all select elements inside the filter sections
-    const selectElements = document.querySelectorAll(".filt-com select");
-
-    // Create an object to store selected values
-    let   selectedValues   = {};
-
-    selectElements.forEach((select, index) => {
-        let labelEl = select.closest(".form-group")?.querySelector("label");
-  let label = labelEl && labelEl.innerText.trim() ? labelEl.innerText.trim() 
-              : select.closest(".filt-com")?.querySelector("h4")?.innerText.trim()
-              || `Option ${index + 1}`;        let value = select.value.trim() ? select.value : "";
-
-        // Convert label to lowercase and replace spaces with underscores
-        let formattedLabel = label.toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
-
-        console.log(label);
-
-        if (formattedLabel.includes("age")) {
-    if (value.includes("to")) {
-        let [minAge, maxAge] = value.split(" to ").map(Number);
-        selectedValues["min_age"] = minAge;
-        selectedValues["max_age"] = maxAge;
-    } else {
-        selectedValues["min_age"] = "";
-        selectedValues["max_age"] = "";
-    }
-} else {
-    selectedValues[formattedLabel] = value;
-}
-    });
-
-    console.log("Query Params:", selectedValues); // Debugging
-
-    // Convert selectedValues object into query parameters
-    let queryParams = new URLSearchParams(selectedValues).toString();
-    let apiUrl = `http://159.89.174.77:5000/api/quick_search?${queryParams}`;
-
-    try {
-        let response = await fetch(apiUrl, { method: "GET" });
-
-        if (response.ok) {
-            let responseData = await response.json();
-            console.log("API Response:", responseData);
-
-            // Store API response for the next page
-            sessionStorage.setItem("searchResponse", JSON.stringify(responseData));
-
-            // Redirect to the results page
-            window.location.href = "filtered-profiles.html";
+    document.addEventListener("DOMContentLoaded", function () {
+        const submitBtn = document.getElementById("submitBtn");
+    
+        if (submitBtn) {
+            submitBtn.addEventListener("click", async function (event) {
+                event.preventDefault();
+    
+                const selectElements = document.querySelectorAll(".filt-com select");
+                let selectedValues = {};
+    
+                selectElements.forEach((select, index) => {
+                    let labelEl = select.closest(".form-group")?.querySelector("label");
+                    let label = labelEl && labelEl.innerText.trim()
+                        ? labelEl.innerText.trim()
+                        : select.closest(".filt-com")?.querySelector("h4")?.innerText.trim()
+                        || `Option ${index + 1}`;
+    
+                    let value = select.value.trim() ? select.value : "";
+                    let formattedLabel = label.toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+    
+                    if (formattedLabel.includes("age")) {
+                        if (value.includes("to")) {
+                            let [minAge, maxAge] = value.split(" to ").map(Number);
+                            selectedValues["min_age"] = minAge;
+                            selectedValues["max_age"] = maxAge;
+                        } else {
+                            selectedValues["min_age"] = "";
+                            selectedValues["max_age"] = "";
+                        }
+                    } else {
+                        selectedValues[formattedLabel] = value;
+                    }
+                });
+    
+                console.log("Query Params:", selectedValues);
+    
+                let queryParams = new URLSearchParams(selectedValues).toString();
+                let apiUrl = `http://159.89.174.77:5000/api/quick_search?${queryParams}`;
+    
+                try {       
+                    let response = await fetch(apiUrl, { method: "GET" });
+    
+                    if (response.ok) {
+                        let responseData = await response.json();
+                        console.log("API Response:", responseData);
+    
+                        sessionStorage.setItem("searchResponse", JSON.stringify(responseData));
+                        window.location.href = "filtered-profiles.html";
+                    } else {
+                        console.log(response);
+                        alert("Error: " + "No profiles found for the selected criteria.");
+                    }
+                } catch (error) {
+                    console.error("Request Failed", error);
+                    alert("Failed to fetch data.");
+                }
+            });
         } else {
-            console.log(response);
-            alert("Error: " + "No profiles found for the selected criteria.");
+            console.warn("submitBtn not found in the DOM.");
         }
-    } catch (error) {
-        console.error("Request Failed", error);
-        alert("Failed to fetch data.");
-    }
-});
-  
-  </script>
+    });
+    </script>
+    
   
 
     <script>
@@ -934,85 +933,84 @@ let currentIndex = 0;
 const batchSize = 10;
 
 
-        document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
+const role = getUserRoleFromToken();
 
-            const role = getUserRoleFromToken();
+console.log("Detected User Role:", role); // Debug
 
-    console.log("Detected User Role:", role); // Debug
-    const registerLink = document.getElementById("register-link");
-    const allProHead = document.getElementById("all-pro-head");
-
-
-
-    // Default: hide all controlled elements
-    document.querySelector(".plans-link")?.classList.add("hide");
-    document.querySelector(".user-profile")?.classList.add("hide");
-    document.querySelector(".my-profile")?.classList.add("hide");
-
-
-    document.querySelector(".register-link-top")?.classList.add("hide");
-    document.querySelector(".dashboard-section")?.classList.add("hide");
-    document.querySelector(".signin-only")?.classList.add("hide");
-
-    // Show based on role
-    switch (role) {
-        case "admin":
-            document.querySelector(".plans-link")?.classList.remove("hide");
-            document.querySelector(".register-link-top")?.classList.remove("hide");
-            document.querySelector(".dashboard-section")?.classList.remove("hide");
-            document.querySelector(".signin-only")?.classList.remove("hide");
-            break;
-        case "moderator":
-        document.querySelector(".my-profile")?.classList.remove("hide");
-        document.querySelector(".user-profile")?.classList.remove("hide");
-
-            break;
-        case "user":
-        document.querySelector(".user-profile")?.classList.remove("hide");
-
-            document.querySelector(".plans-link")?.classList.remove("hide");
-
-
-            break;
-        case "viewer": // not signed in
-        default:
-            document.querySelector(".signin-only")?.classList.remove("hide");
-            break;
-    }
-
-    if (role === "viewer") {
-        // If the user is a "user", redirect them to the plans page
-        registerLink.href = "login.html";
-    } else if (role === "user") {
-        // If the user is not a "user" (e.g., "viewer", "admin"), keep the current link
-        registerLink.href = "plans.html";
-    }
-
-    else{    }
+// Default: hide all controlled elements
+document.querySelector(".plans-link")?.classList.add("hide");
+document.querySelector(".register-link")?.classList.add("hide");
+document.querySelector(".dashboard-section")?.classList.add("hide");
+document.querySelector(".my-profile")?.classList.add("hide");
+document.querySelector(".registering-link")?.classList.add("hide");
 
 
 
 
-    function getUserRoleFromToken() {
-    const token = localStorage.getItem("access_token");
+document.querySelector(".signin-only")?.classList.add("hide");
+document.querySelector(".logout-only")?.classList.add("hide");
+document.querySelector(".user-profile.html")?.classList.add("hide");
 
-    if (!token) return "viewer"; // Not signed in
 
-    try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const role = payload.role || "viewer"; // adjust if your payload key is different
-        localStorage.setItem("user_role", role); // Store role for later use
-        return role;
-    } catch (err) {
-        console.error("Failed to decode token", err);
-        return "viewer";
-    }
+
+
+// Show based on role   
+switch (role) {
+case "admin":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".register-link")?.classList.remove("hide");
+    document.querySelector(".dashboard-section")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    break;
+case "moderator":
+document.querySelector(".my-profile")?.classList.remove ("hide");
+document.querySelector(".logout-only")?.classList.remove("hide");
+
+
+    break;
+case "user":
+    document.querySelector(".plans-link")?.classList.remove("hide");
+    document.querySelector(".logout-only")?.classList.remove("hide");
+    document.querySelector(".user-profile.html")?.classList.remove("hide");
+    document.querySelector(".registering-link")?.classList.remove("hide");
+    document.querySelector(".my-profile")?.classList.remove ("hide");
+
+
+
+    break;
+case "viewer": // not signed in
+    document.querySelector(".signin-only")?.classList.remove("hide");
+
+default:
+    document.querySelector(".signin-only")?.classList.remove("hide");
+    break;
 }
 
 
-    fetchProfiles();
+function getUserRoleFromToken() {
+const token = localStorage.getItem("access_token");
+
+if (!token) return "viewer"; // Not signed in
+
+try {
+const payload = JSON.parse(atob(token.split(".")[1]));
+const role = payload.role || "viewer"; // adjust if your payload key is different
+localStorage.setItem("user_role", role); // Store role for later use
+return role;
+} catch (err) {
+console.error("Failed to decode token", err);
+return "viewer";
+}
+}
+
+
+fetchProfiles(); // Fetch profiles on page load
 });
+
+
+
 function fetchProfiles() {
     fetch("http://159.89.174.77:5000/api/allprofiles") // Replace with actual API URL
     .then(response => {

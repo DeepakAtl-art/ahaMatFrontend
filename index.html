@@ -315,7 +315,7 @@
 
                             <li class="plans-link"><a href="plans.html">Plans</a></li>
 
-                            <li class="register-link" ><a href="create-user-profile.html">Register</a></li>
+                            <li class="register-link" ><a href="sign-up.html">Register</a></li>
                             <li><a href="about.html">About us</a></li>                           
 
                             <li class="smenu-pare  dashboard-section">
@@ -402,7 +402,7 @@
             <div class="prof-rhs-help">
                 <div class="inn">
                     <h3>Welcome</h3>
-                    <p>Sign-in to explore mroe features </p>
+                    <p>Sign-in to explore more features </p>
                     <a href="sign-up.html">Register for free</a>
                 </div>
             </div>
@@ -1564,143 +1564,146 @@ document.getElementById("logoutBtn").addEventListener("click", async function (e
 
 
 
-     document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-        const role = getUserRoleFromToken();
+            const role = getUserRoleFromToken();
 
-    console.log("Detected User Role:", role); // Debug
+        console.log("Detected User Role:", role); // Debug
 
-    // Default: hide all controlled elements
-    document.querySelector(".plans-link")?.classList.add("hide");
-    document.querySelector(".register-link")?.classList.add("hide");
-    document.querySelector(".dashboard-section")?.classList.add("hide");
-    document.querySelector(".my-profile")?.classList.add("hide");
-    document.querySelector(".registering-link")?.classList.add("hide");
-
-
-
-    
-    document.querySelector(".signin-only")?.classList.add("hide");
-    document.querySelector(".logout-only")?.classList.add("hide");
-    document.querySelector(".user-profile.html")?.classList.add("hide");
+        // Default: hide all controlled elements
+        document.querySelector(".plans-link")?.classList.add("hide");
+        document.querySelector(".register-link")?.classList.add("hide");
+        document.querySelector(".dashboard-section")?.classList.add("hide");
+        document.querySelector(".my-profile")?.classList.add("hide");
+        document.querySelector(".registering-link")?.classList.add("hide");
 
 
-    
 
-    // Show based on role   
-    switch (role) {
-        case "admin":
-            document.querySelector(".plans-link")?.classList.remove("hide");
-            document.querySelector(".register-link")?.classList.remove("hide");
-            document.querySelector(".dashboard-section")?.classList.remove("hide");
+        
+        document.querySelector(".signin-only")?.classList.add("hide");
+        document.querySelector(".logout-only")?.classList.add("hide");
+        document.querySelector(".user-profile.html")?.classList.add("hide");
+
+
+        
+
+        // Show based on role   
+        switch (role) {
+            case "admin":
+                document.querySelector(".plans-link")?.classList.remove("hide");
+                document.querySelector(".register-link")?.classList.remove("hide");
+                document.querySelector(".dashboard-section")?.classList.remove("hide");
+                document.querySelector(".logout-only")?.classList.remove("hide");
+                break;
+            case "moderator":
+            document.querySelector(".my-profile")?.classList.remove ("hide");
             document.querySelector(".logout-only")?.classList.remove("hide");
-            break;
-        case "moderator":
-        document.querySelector(".my-profile")?.classList.remove ("hide");
-        document.querySelector(".logout-only")?.classList.remove("hide");
-
-            break;
-        case "user":
-            document.querySelector(".plans-link")?.classList.remove("hide");
-            document.querySelector(".logout-only")?.classList.remove("hide");
-            document.querySelector(".user-profile.html")?.classList.remove("hide");
-            document.querySelector(".registering-link")?.classList.remove("hide");
-
-
-            break;
-        case "viewer": // not signed in
-            document.querySelector(".signin-only")?.classList.remove("hide");
-
-        default:
-            document.querySelector(".signin-only")?.classList.remove("hide");
-            break;
-    }
-
-
-    function getUserRoleFromToken() {
-    const token = localStorage.getItem("access_token");
-
-    if (!token) return "viewer"; // Not signed in
-
-    try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const role = payload.role || "viewer"; // adjust if your payload key is different
-        localStorage.setItem("user_role", role); // Store role for later use
-        return role;
-    } catch (err) {
-        console.error("Failed to decode token", err);
-        return "viewer";
-    }
-}
-
-
-    
-
-
-        document.getElementById("searchButton").addEventListener("click", async function (event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Get all select elements inside the form
-        const selectElements = document.querySelectorAll(".ban-search select");
-
-        // Create an object to store selected values
-        let selectedValues = {};
-
-        selectElements.forEach((select, index) => {
-            let label = select.closest(".form-group").querySelector("label")?.innerText || `Option ${index + 1}`;
-            let value = select.value.trim() ? select.value : "";
-
-            // Convert label to lowercase and replace spaces with underscores
-            let formattedLabel = label.toLowerCase().replace(/\s+/g, "_");
-
             
-        if (formattedLabel.includes("age")) {
-    if (value.includes("to")) {
-        let [minAge, maxAge] = value.split(" to ").map(Number);
-        selectedValues["min_age"] = minAge;
-        selectedValues["max_age"] = maxAge;
-    } else {
-        selectedValues["min_age"] = "";
-        selectedValues["max_age"] = "";
-    }
-} else {
-    selectedValues[formattedLabel] = value;
-}
-    });
 
-        console.log("Query Params:", selectedValues); // Debugging
+                break;
+            case "user":
+                document.querySelector(".plans-link")?.classList.remove("hide");
+                document.querySelector(".logout-only")?.classList.remove("hide");
+                document.querySelector(".user-profile.html")?.classList.remove("hide");
+                document.querySelector(".registering-link")?.classList.remove("hide");
+                document.querySelector(".my-profile")?.classList.remove ("hide");
 
-        // Convert selectedValues object into query parameters
-        let queryParams = new URLSearchParams(selectedValues).toString();
-        let apiUrl = `http://159.89.174.77:5000/api/quick_search?${queryParams}`;
+
+
+                break;
+            case "viewer": // not signed in
+                document.querySelector(".signin-only")?.classList.remove("hide");
+
+            default:
+                document.querySelector(".signin-only")?.classList.remove("hide");
+                break;
+        }
+
+
+        function getUserRoleFromToken() {
+        const token = localStorage.getItem("access_token");
+
+        if (!token) return "viewer"; // Not signed in
 
         try {
-            let response = await fetch(apiUrl, { method: "GET" });
-
-            if (response.ok) {
-                let responseData = await response.json();
-                console.log("API Response:", responseData);
-
-                // Store API response for the next page
-                sessionStorage.setItem("searchResponse", JSON.stringify(responseData));
-
-                // Redirect to the results page
-                window.location.href = "filtered-profiles.html";
-
-                // window.location.href = "all-profiles.html"; 
-            } else {
-
-                console.log(response);
-                alert("Error: " + "No proflies found for the selected criteria.");
-            }
-        } catch (error) {
-            console.error("Request Failed", error);
-            alert("Failed to fetch data.");
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            const role = payload.role || "viewer"; // adjust if your payload key is different
+            localStorage.setItem("user_role", role); // Store role for later use
+            return role;
+        } catch (err) {
+            console.error("Failed to decode token", err);
+            return "viewer";
         }
+    }
+
+
+        
+
+
+            document.getElementById("searchButton").addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get all select elements inside the form
+            const selectElements = document.querySelectorAll(".ban-search select");
+
+            // Create an object to store selected values
+            let selectedValues = {};
+
+            selectElements.forEach((select, index) => {
+                let label = select.closest(".form-group").querySelector("label")?.innerText || `Option ${index + 1}`;
+                let value = select.value.trim() ? select.value : "";
+
+                // Convert label to lowercase and replace spaces with underscores
+                let formattedLabel = label.toLowerCase().replace(/\s+/g, "_");
+
+                
+            if (formattedLabel.includes("age")) {
+        if (value.includes("to")) {
+            let [minAge, maxAge] = value.split(" to ").map(Number);
+            selectedValues["min_age"] = minAge;
+            selectedValues["max_age"] = maxAge;
+        } else {
+            selectedValues["min_age"] = "";
+            selectedValues["max_age"] = "";
+        }
+    } else {
+        selectedValues[formattedLabel] = value;
+    }
+        });
+
+            console.log("Query Params:", selectedValues); // Debugging
+
+            // Convert selectedValues object into query parameters
+            let queryParams = new URLSearchParams(selectedValues).toString();
+            let apiUrl = `http://159.89.174.77:5000/api/quick_search?${queryParams}`;
+
+            try {
+                let response = await fetch(apiUrl, { method: "GET" });
+
+                if (response.ok) {
+                    let responseData = await response.json();
+                    console.log("API Response:", responseData);
+
+                    // Store API response for the next page
+                    sessionStorage.setItem("searchResponse", JSON.stringify(responseData));
+
+                    // Redirect to the results page
+                    window.location.href = "filtered-profiles.html";
+
+                    // window.location.href = "all-profiles.html"; 
+                } else {
+
+                    console.log(response);
+                    alert("Error: " + "No proflies found for the selected criteria.");
+                }
+            } catch (error) {
+                console.error("Request Failed", error);
+                alert("Failed to fetch data.");
+            }
+        });
+
+
     });
-
-
-});
 
 
 
@@ -1807,7 +1810,7 @@ function updateProfilesList(profiles) {
                     <h4>${profile.name}</h4>
                     <p>Age: ${profile.age}</p>
                     <p>${profile.job || 'Not specified'}</p>
-                    <a href="profile-details.html?userId=${profile.linked_to}">View more</a>
+                    <a href="profile-details.html?userId=${profile.id}">View more</a>
                 </div>
             </div>
         `;
