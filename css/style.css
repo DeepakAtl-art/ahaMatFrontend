@@ -350,8 +350,8 @@ img{
 
 .hom-qui-acc-sli {
     display: flex;
-    flex-wrap: nowrap; /* Prevents wrapping */
-    overflow-x: auto; /* Enables horizontal scrolling */
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
     white-space: nowrap;
     scroll-behavior: smooth;
     gap: 15px; /* Adds spacing between items */
@@ -1581,10 +1581,11 @@ i.fa-instagram:hover {
 
 
 @keyframes backgroundChange {
-    0% { background-image: url("../images/ahh\ kalayam_1.webp"); }
-    33% { background-image: url("../images/ahh\ kalayam_1.webp"); } /* Hold first image */
-    66% { background-image: url("../images/Desktop_Image/Desktop_Image/ahh\ kalayam_2.webp"); } /* Switch instantly */
-    100% { background-image: url("../images/Desktop_Image/Desktop_Image/ahh\ kalayam_3.webp"); } /* Hold second image */
+    0%   { background-image: url("../images/ahh kalayam_1.webp"); }
+    25%  { background-image: url("../images/bannerImage3.jpg"); }
+    50%  { background-image: url("../images/bannerImage4.jpg"); }
+    75%  { background-image: url("../images/Desktop_Image/Desktop_Image/ahh kalayam_2.webp"); }
+    95% { background-image: url("../images/Desktop_Image/Desktop_Image/ahh kalayam_3.webp"); }
 }
 
 
@@ -1601,7 +1602,7 @@ i.fa-instagram:hover {
     /* background: #D9D9D9; */
     border-radius: 24px;
 
-    animation: backgroundChange 8s infinite;
+    animation: backgroundChange 15s infinite;
 }
 
 .ban-tit h1 b {
@@ -2273,7 +2274,7 @@ table td{}
     float: left;
     width: 100%;
     padding-bottom: 100px;
-    /* overflow: hidden; */
+    overflow: hidden;
     position: relative;
 }
 
@@ -4842,6 +4843,15 @@ span.mail::before {
     height: 100vh;
 }
 
+#profiles-list {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE/Edge */
+}
+
+#profiles-list::-webkit-scrollbar {
+    display: none;               /* Chrome, Safari */
+}
+
 .profi-bio .lhs {
     float: left;
     width: 100%;
@@ -4853,7 +4863,7 @@ span.mail::before {
 }
 
 .prof-rhs-help {
-    background: url("../images/tell-us.jpg") 0% 0% / cover no-repeat;
+    background: url("../images/bannerImg.jpg") 0% 0% / cover no-repeat;
     padding: 25px;
     border-radius: 10px;
     margin: 0 0 25px 0;
@@ -4873,7 +4883,7 @@ span.mail::before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.43);
+    /* background: rgba(0, 0, 0, 0); */
     inset: 0px;
     border-radius: 10px;
 }
@@ -12546,7 +12556,7 @@ wrapper1{
 .grid1 {
     display: grid;
     grid-template-columns: repeat(4, 75px);
-    grid-template-rows: repeat(4, 75px);
+    grid-template-rows: repeat(4, 50px);
     gap: 5px;
     justify-content: center;
 }
@@ -12564,7 +12574,7 @@ wrapper1{
 .cell1 {
     border: 1px solid black;
     width: 75px;
-    height: 75px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;

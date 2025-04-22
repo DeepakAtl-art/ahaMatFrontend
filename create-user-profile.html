@@ -165,9 +165,10 @@
                     <!-- TOP MENU -->
                     <div class="bl">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
                             <li><a href="all-profiles.html">View Profiles</a></li>
-                            <li><a href="plans.html">Plans</a></li>
+                            <li class="plans-link"><a href="plans.html">Plans</a></li>
+                            <li class="my-profile"><a href="user-profile.html">My profile</a></li>
+
                                
                                <li><a href="about.html">About us</a></li>                           
    
@@ -176,14 +177,19 @@
                                    <div class="smenu-open smenu-single">
                                        <ul>
                                            <li><a href="user-dashboard.html">Dashboard</a></li>
-                                           <li><a href="user-profile.html">My profile</a></li>
+                                           <li><a href="user-profile.html">My   profile</a></li>
                                            <li><a href="user-interests.html">Interests</a></li>
                                            <li><a href="login.html">Sign in</a></li>
                                        </ul>
                                    </div>
                                </li>
                                <li class="signin-only"><a href="login.html">Sign in</a></li>
-                               <li class="my-profile"><a href="user-profile.html">My profile</a></li>
+                               <li class="download-form" > <a href="/assets/pdfs/PDF%20ahh.pdf" download >Download PDF</a> </li>
+
+                               <li class="logout-only">
+                                <a href="#" id="logoutBtn">Logout</a>
+                              </li>
+                               
 
 
                         </ul>
@@ -360,11 +366,11 @@
                                                 </div>
                                                 <div class="col-md-4 form-group">
                                                     <label class="lb">Place/இடம் </label>
-                                                    <input class="form-control" type="text" name="city" placeholder="Enter your City" />
+                                                    <input class="form-control" type="text" name="place" placeholder="Enter your City" />
                                             
                                                     
                                                     </div>
-                                            </div>
+                                                            </div>
                                          
                                             <div class="row">
                                                 <div class="col-md-6 form-group">
@@ -569,6 +575,70 @@
                                                     <label class="lb">Sub Caste/துணை சாதி</label>
                                                     <select class="form-select chosen-select" name="sub_caste" data-placeholder="Select your City">
                                                         <option>Choose one</option>
+                                                        <option value="வன்னியா">வன்னியா</option>
+                                                        <option value="வன்னிய கவுண்டர்">வன்னிய கவுண்டர்</option>
+                                                        <option value="கவுண்டர்">கவுண்டர்</option>
+                                                        <option value="படையாட்சி">படையாட்சி</option>
+                                                        <option value="அக்னி குல சத்திரியர்">அக்னி குல சத்திரியர்</option>
+                                                        <option value="கவர நாயுடு">கவர நாயுடு</option>
+                                                        <option value="பலிஜா நாயுடு">பலிஜா நாயுடு</option>
+                                                        <option value="போயர்">போயர்</option>
+                                                        <option value="முத்தராயர்">முத்தராயர்</option>
+                                                        <option value="கம்மா">கம்மா</option>
+                                                        <option value="முத்துராஜா">முத்துராஜா</option>
+                                                        <option value="பத்ம வேலாமா">பத்ம வேலாமா</option>
+                                                        <option value="பாளையக்காரர்">பாளையக்காரர்</option>
+                                                        <option value="பாளையக்கார">பாளையக்கார</option>
+                                                        <option value="தமிழ் யாதவர்">தமிழ் யாதவர்</option>
+                                                        <option value="தெலுங்கு யாதவர்">தெலுங்கு யாதவர்</option>
+                                                        <option value="தமிழ் யாதவ்">தமிழ் யாதவ்</option>
+                                                        <option value="தெலுங்கு யாதவ்">தெலுங்கு யாதவ்</option>
+                                                        <option value="செங்குந்த முதலியார்">செங்குந்த முதலியார்</option>
+                                                        <option value="தொண்டை மண்டல சைவ வேளாளர்">தொண்டை மண்டல சைவ வேளாளர்</option>
+                                                        <option value="நத்தமன்">நத்தமன்</option>
+                                                        <option value="நைனர்">நைனர்</option>
+                                                        <option value="அகமுடையார்">அகமுடையார்</option>
+                                                        <option value="பிள்ளை">பிள்ளை</option>
+                                                        <option value="வாணிய செட்டியார்">வாணிய செட்டியார்</option>
+                                                        <option value="சைவ செட்டியார்">சைவ செட்டியார்</option>
+                                                        <option value="கோட்டி">கோட்டி</option>
+                                                        <option value="சோழிய செட்டியார்">சோழிய செட்டியார்</option>
+                                                        <option value="வேட்டைக்காரர்">வேட்டைக்காரர்</option>
+                                                        <option value="முத்துராஜா">முத்துராஜா</option>
+                                                        <option value="முத்திரையர்">முத்திரையர்</option>
+                                                        <option value="அம்பலக்காரர்">அம்பலக்காரர்</option>
+                                                        <option value="சேர்வை">சேர்வை</option>
+                                                        <option value="தேர்வைக்காரர்">தேர்வைக்காரர்</option>
+                                                        <option value="தலையாரி">தலையாரி</option>
+                                                        <option value="பூசாரி">பூசாரி</option>
+                                                        <option value="வழுவாடிதேவர்">வழுவாடிதேவர்</option>
+                                                        <option value="பாளையக்காரர்">பாளையக்காரர்</option>
+                                                        <option value="வலையர்">வலையர்</option>
+                                                        <option value="அரையர்">அரையர்</option>
+                                                        <option value="முத்துராஜ் நாயுடு">முத்துராஜ் நாயுடு</option>
+                                                        <option value="வரையறை">வரையறை</option>
+                                                        <option value="கல்லார்">கல்லார்</option>
+                                                        <option value="மறவர்">மறவர்</option>
+                                                        <option value="கொல்லர்கள்">கொல்லர்கள்</option>
+                                                        <option value="தச்சர்கள்">தச்சர்கள்</option>
+                                                        <option value="மாயாச்சர்">மாயாச்சர்</option>
+                                                        <option value="பொற்கொல்லர்">பொற்கொல்லர்</option>
+                                                        <option value="ஆசாரி">ஆசாரி</option>
+                                                        <option value="கொங்கு வெள்ளாள கவுண்டர்">கொங்கு வெள்ளாள கவுண்டர்</option>
+                                                        <option value="வெள்ளாள கவுண்டர்">வெள்ளாள கவுண்டர்</option>
+                                                        <option value="நட்டு கவுண்டர்">நட்டு கவுண்டர்</option>
+                                                        <option value="பூசாரி கவுண்டர்">பூசாரி கவுண்டர்</option>
+                                                        <option value="வெட்டுவா கவுண்டர்">வெட்டுவா கவுண்டர்</option>
+                                                        <option value="சோழிய வெள்ளாளர்">சோழிய வெள்ளாளர்</option>
+                                                        <option value="தொண்டை மண்டல வெள்ளாளர்">தொண்டை மண்டல வெள்ளாளர்</option>
+                                                        <option value="துளுவ வெள்ளாளர்">துளுவ வெள்ளாளர்</option>
+                                                        <option value="கார்காத்த வெள்ளாளர்">கார்காத்த வெள்ளாளர்</option>
+                                                        <option value="கொடிக்கால் வெள்ளாளர்">கொடிக்கால் வெள்ளாளர்</option>
+                                                        <option value="வெள்ளன் செட்டி">வெள்ளன் செட்டி</option>
+                                                        <option value="மலைமான் உடையார்">மலைமான் உடையார்</option>
+                                                        <option value="சுருதிமார் உடையார்">சுருதிமார் உடையார்</option>
+                                                        <option value="நையர்">நையர்</option>
+                                                        <option value="மோப்பன">மோப்பன</option>
                                                         <option>Sub cast No bar</option>
                                                     <option>Gounder</option>
                                                     <option>Naicker</option>
@@ -576,7 +646,7 @@
                                                       </select>
                                                 </div>
                                                 <div class="col-md-4 form-group">
-                                                    <label class="lb">Religion/    </label>
+                                                    <label class="lb">Religion </label>
                                                     <select class="form-select chosen-select" name="religion" data-placeholder="Select your City">
                                                         <option>Religion</option>
                                                         <option>Any</option>
@@ -868,6 +938,70 @@
                                                             </label>
                                                             <select class="form-select chosen-select" name="partner_sub_caste" data-placeholder="Select your City">
                                                                 <option>Choose one</option>
+                                                                <option value="வன்னியா">வன்னியா</option>
+                                                                <option value="வன்னிய கவுண்டர்">வன்னிய கவுண்டர்</option>
+                                                                <option value="கவுண்டர்">கவுண்டர்</option>
+                                                                <option value="படையாட்சி">படையாட்சி</option>
+                                                                <option value="அக்னி குல சத்திரியர்">அக்னி குல சத்திரியர்</option>
+                                                                <option value="கவர நாயுடு">கவர நாயுடு</option>
+                                                                <option value="பலிஜா நாயுடு">பலிஜா நாயுடு</option>
+                                                                <option value="போயர்">போயர்</option>
+                                                                <option value="முத்தராயர்">முத்தராயர்</option>
+                                                                <option value="கம்மா">கம்மா</option>
+                                                                <option value="முத்துராஜா">முத்துராஜா</option>
+                                                                <option value="பத்ம வேலாமா">பத்ம வேலாமா</option>
+                                                                <option value="பாளையக்காரர்">பாளையக்காரர்</option>
+                                                                <option value="பாளையக்கார">பாளையக்கார</option>
+                                                                <option value="தமிழ் யாதவர்">தமிழ் யாதவர்</option>
+                                                                <option value="தெலுங்கு யாதவர்">தெலுங்கு யாதவர்</option>
+                                                                <option value="தமிழ் யாதவ்">தமிழ் யாதவ்</option>
+                                                                <option value="தெலுங்கு யாதவ்">தெலுங்கு யாதவ்</option>
+                                                                <option value="செங்குந்த முதலியார்">செங்குந்த முதலியார்</option>
+                                                                <option value="தொண்டை மண்டல சைவ வேளாளர்">தொண்டை மண்டல சைவ வேளாளர்</option>
+                                                                <option value="நத்தமன்">நத்தமன்</option>
+                                                                <option value="நைனர்">நைனர்</option>
+                                                                <option value="அகமுடையார்">அகமுடையார்</option>
+                                                                <option value="பிள்ளை">பிள்ளை</option>
+                                                                <option value="வாணிய செட்டியார்">வாணிய செட்டியார்</option>
+                                                                <option value="சைவ செட்டியார்">சைவ செட்டியார்</option>
+                                                                <option value="கோட்டி">கோட்டி</option>
+                                                                <option value="சோழிய செட்டியார்">சோழிய செட்டியார்</option>
+                                                                <option value="வேட்டைக்காரர்">வேட்டைக்காரர்</option>
+                                                                <option value="முத்துராஜா">முத்துராஜா</option>
+                                                                <option value="முத்திரையர்">முத்திரையர்</option>
+                                                                <option value="அம்பலக்காரர்">அம்பலக்காரர்</option>
+                                                                <option value="சேர்வை">சேர்வை</option>
+                                                                <option value="தேர்வைக்காரர்">தேர்வைக்காரர்</option>
+                                                                <option value="தலையாரி">தலையாரி</option>
+                                                                <option value="பூசாரி">பூசாரி</option>
+                                                                <option value="வழுவாடிதேவர்">வழுவாடிதேவர்</option>
+                                                                <option value="பாளையக்காரர்">பாளையக்காரர்</option>
+                                                                <option value="வலையர்">வலையர்</option>
+                                                                <option value="அரையர்">அரையர்</option>
+                                                                <option value="முத்துராஜ் நாயுடு">முத்துராஜ் நாயுடு</option>
+                                                                <option value="வரையறை">வரையறை</option>
+                                                                <option value="கல்லார்">கல்லார்</option>
+                                                                <option value="மறவர்">மறவர்</option>
+                                                                <option value="கொல்லர்கள்">கொல்லர்கள்</option>
+                                                                <option value="தச்சர்கள்">தச்சர்கள்</option>
+                                                                <option value="மாயாச்சர்">மாயாச்சர்</option>
+                                                                <option value="பொற்கொல்லர்">பொற்கொல்லர்</option>
+                                                                <option value="ஆசாரி">ஆசாரி</option>
+                                                                <option value="கொங்கு வெள்ளாள கவுண்டர்">கொங்கு வெள்ளாள கவுண்டர்</option>
+                                                                <option value="வெள்ளாள கவுண்டர்">வெள்ளாள கவுண்டர்</option>
+                                                                <option value="நட்டு கவுண்டர்">நட்டு கவுண்டர்</option>
+                                                                <option value="பூசாரி கவுண்டர்">பூசாரி கவுண்டர்</option>
+                                                                <option value="வெட்டுவா கவுண்டர்">வெட்டுவா கவுண்டர்</option>
+                                                                <option value="சோழிய வெள்ளாளர்">சோழிய வெள்ளாளர்</option>
+                                                                <option value="தொண்டை மண்டல வெள்ளாளர்">தொண்டை மண்டல வெள்ளாளர்</option>
+                                                                <option value="துளுவ வெள்ளாளர்">துளுவ வெள்ளாளர்</option>
+                                                                <option value="கார்காத்த வெள்ளாளர்">கார்காத்த வெள்ளாளர்</option>
+                                                                <option value="கொடிக்கால் வெள்ளாளர்">கொடிக்கால் வெள்ளாளர்</option>
+                                                                <option value="வெள்ளன் செட்டி">வெள்ளன் செட்டி</option>
+                                                                <option value="மலைமான் உடையார்">மலைமான் உடையார்</option>
+                                                                <option value="சுருதிமார் உடையார்">சுருதிமார் உடையார்</option>
+                                                                <option value="நையர்">நையர்</option>
+                                                                <option value="மோப்பன">மோப்பன</option>
                                                                 <option>Sub cast No bar</option>
                                                             <option>Gounder</option>
                                                             <option>Naicker</option>
@@ -915,13 +1049,15 @@
                                             <textarea  class="cell" id="4" > </textarea>   
                                             <textarea  class="cell" id="5" > </textarea>   
                             
-                                            <div class="cell gap">RASI</div>
+                                            <div class="cell gap">RAASI/ராசி                                            </div>
                                             <div class="cell gap"></div>
                             
                                             <textarea  class="cell" id="6" > </textarea>   
                                             <textarea  class="cell" id="7" > </textarea>   
                                             <div class="cell gap"></div>
-                                            <div class="cell gap"></div>
+                                            <div class="cell gap">
+                                                <img src="./images/Murugar.webp" alt="Description" style="width: 100%; height: auto;" />
+                                            </div>
                                             <textarea  class="cell" id="8" > </textarea>   
                                             <textarea  class="cell" id="9" > </textarea>   
                                             <textarea  class="cell" id="10" > </textarea>   
@@ -941,14 +1077,15 @@
                                             <textarea  class="cell" id="4" > </textarea>   
                                             <textarea  class="cell" id="5" > </textarea>   
                             
-                                            <div class="cell gap">AMSAM
-                                            </div>
+                                            <div class="cell gap">AMSAM/அம்சம்    </div>
                                             <div class="cell gap"></div>
                             
                                             <textarea  class="cell" id="6" > </textarea>   
                                             <textarea  class="cell" id="7" > </textarea>   
                                             <div class="cell gap"></div>
-                                            <div class="cell gap"></div>
+                                            <div class="cell gap">
+                                                <img src="./images/Vinayagar.webp" alt="Description" style="width: 100%; height: auto;" />
+                                            </div>
                                             <textarea  class="cell" id="8" > </textarea>   
                                             <textarea  class="cell" id="9" > </textarea>   
                                             <textarea  class="cell" id="10" > </textarea>   
@@ -979,7 +1116,7 @@
                                 
                                     
                                         <!--END PROFILE BIO-->
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit"  id = "submitBtn" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
                         </div>
@@ -1035,6 +1172,193 @@
     </section>
     <!-- END -->
     <!-- Optional JavaScript -->
+
+
+
+    
+    <script>
+
+        
+document.getElementById("logoutBtn").addEventListener("click", async function (e) {
+    e.preventDefault(); // Prevent default link behavior
+    const token = localStorage.getItem("access_token");
+
+
+    try {
+      const response = await fetch("http://159.89.174.77:5000/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+
+        },
+        
+      });
+
+      if (response.status === 200) {
+        console.log("The decoded token!!!");
+        // Redirect to index.js (or your login/homepage)
+            localStorage.removeItem("access_token");
+
+         window.location.href = "index.html";
+      } else {
+        localStorage.removeItem("access_token");
+        location.reload();
+
+        alert("Session expired. Please log in again.");
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Something went wrong. Please try again later.");
+    }
+  });
+
+
+
+        function editFunction() {
+            const horoscope =JSON.stringify(collectDataAndSubmitForm());// ✅ call it here
+
+            console.log("Horoscope data:", horoscope); // Debugging line
+
+            return {
+                caste: document.querySelector("[name='caste']").value,
+                sub_caste: document.querySelector("[name='sub_caste']").value,
+                religion: document.querySelector("[name='religion']").value,
+                gowthram: document.querySelector("[name='gowthram']").value,
+                star: document.querySelector("[name='star']").value,
+                raasi: document.querySelector("[name='raasi']").value,
+                padam: document.querySelector("[name='padam']").value,
+                laknam: document.querySelector("[name='laknam']").value,
+                job: document.querySelector("[name='job']").value,
+                place_of_job: document.querySelector("[name='place_of_job']").value,
+                income_per_month: document.querySelector("[name='income_per_month']").value,
+                qualification: document.querySelector("[name='qualification']").value,
+                permanent_address: document.querySelector("[name='permanent_address']").value,
+                present_address: document.querySelector("[name='present_address']").value,
+                contact_person: document.querySelector("[name='contact_person']").value,
+                contact_number: document.querySelector("[name='contact_number']").value,
+        
+                partner_job: document.querySelector("[name='partner_job']").value,
+                partner_qualification: document.querySelector("[name='partner_qualification']").value,
+                partner_income: document.querySelector("[name='partner_income']").value,
+                partner_job_availability: document.querySelector("[name='partner_job_availability']").value,
+                preferred_age: document.querySelector("[name='preferred_age']").value,
+                partner_diet: document.querySelector("[name='partner_diet']").value,
+                horoscope_required: document.querySelector("[name='horoscope_required']").value === "Yes" ? 1 : 0,
+                partner_marital_status: document.querySelector("[name='partner_marital_status']").value,
+                partner_caste: document.querySelector("[name='partner_caste']").value,
+                partner_sub_caste: document.querySelector("[name='partner_sub_caste']").value,
+                linked_to: document.querySelector("[name='linked_to']").value,
+
+        
+                name: document.querySelector("[name='name']").value,
+                age: document.querySelector("[name='age']").value,
+                gender: document.querySelector("[name='gender']").value,
+                city: document.querySelector("[name='city']").value,
+                date_of_birth: document.querySelector("[name='date_of_birth']").value,
+                time_of_birth: document.querySelector("[name='time_of_birth']").value,
+                place: document.querySelector("[name='place']").value,
+                father_name: document.querySelector("[name='father_name']").value,
+                mother_name: document.querySelector("[name='mother_name']").value,
+                father_job: document.querySelector("[name='father_job']").value,
+                mother_job: document.querySelector("[name='mother_job']").value,
+                no_of_siblings: parseInt(document.querySelector("[name='no_of_siblings']").value) || 0,
+                siblings_marital_status: document.querySelector("[name='siblings_marital_status']").value,
+                marital_status: document.querySelector("[name='marital_status']").value,
+                mother_tongue: document.querySelector("[name='mother_tongue']").value,
+                height: document.querySelector("[name='height']").value,
+                weight: document.querySelector("[name='weight']").value,
+                blood_group: document.querySelector("[name='blood_group']").value,
+                disability: document.querySelector("[name='disability']").value,
+                complexion: document.querySelector("[name='complexion']").value,
+                horoscope: horoscope,
+        
+                // Optional hidden fields
+            };
+        }
+        
+        document.getElementById("submitBtn").addEventListener("click", function (e) {
+            e.preventDefault(); // Prevents default form behavior (e.g. page reload)
+        
+            // const profileData = editFunction(); // Get profile data
+
+
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+            const horoscope = JSON.stringify(collectDataAndSubmitForm());// ✅ call it here
+            formData.append("horoscope", horoscope); // Append the JSON string to FormData
+
+
+            const register_number = sessionStorage.getItem("registered_user_id");
+
+        
+        
+        
+        
+            const token = localStorage.getItem("access_token");
+            console.log("Token from localStorage:", token); // Debugging line
+            // console.log("Profile data to be sent:", profileData); // Debugging line
+        
+            fetch(`http://159.89.174.77:5000/api/registerProfile`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                body: formData // Use FormData directly
+            })
+            .then(response => {
+                if (response.status === 200) {
+
+
+
+                    return response.json().then(data => {
+                        console.log("Successfully Created user :", data);
+                        alert("Profile created successfully!");
+
+                        fetch("http://159.89.174.77:5000/api/promote-to-moderator", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ register_number })
+        })
+        .then(promoteResponse => {
+            if (promoteResponse.ok) {
+                console.log("User promoted to moderator successfully.");
+                alert("User role updated to moderator!");
+            } else {
+                console.error("Failed to promote user to moderator.");
+                alert("Profile created, but failed to update role.");
+            }
+
+            // ✅ Redirect only after everything's done
+            // window.location.href = "index.html";
+        })
+        .catch(error => {
+            console.error("Error during promotion:", error);
+            alert("Profile created, but an error occurred while updating role.");
+            window.location.href = "index.html";
+        });
+                        
+                        window.location.href = "index.html"; // Redirect to user profile page
+                        // Optionally redirect or update UI here
+                    });
+                } else {
+                    return response.json().then(err => {
+                        console.error("Update failed with status:", response.status, err);
+                        alert("Failed to update profile.");
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Network or server error:", error);
+                alert("Failed to update profile.");
+            });
+        });
+                
+        
+                </script>
 
 
     <script>
@@ -1167,7 +1491,6 @@ return "viewer";
 }
 
 
-fetchProfiles(); // Fetch profiles on page load
 });
 
 

@@ -165,17 +165,16 @@
                     <!-- TOP MENU -->
                     <div class="bl">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
                             <li><a href="all-profiles.html">View Profiles</a></li>                           
 
                             <li class="plans-link"><a href="plans.html">Plans</a></li>
                                <li class="register-link"><a href="create-user-profile.html">Register</a></li>
    
                                <li class="smenu-pare">
-                                   <span class="smenu">Dashboard</span>
+                                   <span class="smenu dashboard-section">Dashboard</span>
                                    <div class="smenu-open smenu-single">
                                        <ul>
-                                           <li><a href="user-dashboard.html">Dashboard</a></li>
+                                           <li ><a href="user-dashboard.html">Dashboard</a></li>
                                            <li class="my-profile"><a href="user-profile.html">My profile</a></li>
                                            <li><a href="user-interests.html">Interests</a></li>
                                            <li><a href="login.html">Sign in</a></li>
@@ -184,6 +183,11 @@
                                </li>
 
                                <li class="my-profile"><a href="user-profile.html">My profile</a></li>
+                               <li><a href="/assets/pdfs/PDF%20ahh.pdf" download >Download PDF</a> </li>
+
+                               <li class="logout-only">
+                                <a href="#" id="logoutBtn">Logout</a>
+                              </li>
 
                         </ul>
                     </div>
@@ -437,7 +441,7 @@
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
                                         6. நிராகரிப்பு & பொறுப்புகள் வரம்பு (Disclaimer & Liability Limitations)
-Limitations)
+
                                     </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#termsAccordion">
@@ -543,6 +547,50 @@ Limitations)
                             </div>
                         </div>
                     </div> -->
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <section class="wed-hom-footer">
+        <div class="container">
+            <div class="row foot-supp">
+                <h2>
+                    <span>Free support:</span> +91 8015666798 &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    <span>Email:</span> <span style="text-transform: lowercase;">aahakalyanaminfo@gmail.com</span>
+                  </h2>
+            </div>
+            <div class="row wed-foot-link wed-foot-link-1">
+                <div class="col-md-4">
+                    <h4>Get In Touch</h4>
+                    <p>Address: 109/2, சீனிவாசன் சுவாமி தெரு, பழமலை சுவாமி கார்டன், ஆலடி ரோடு, விருத்தாசலம்-606001</p>
+                    <p>Phone: <a href="tel:+918015666798">+91 8015666798</a></p>
+                    <p>Email: <a href="mailto:info@example.com">aahakalyanaminfo@gmail.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h4>HELP &amp; SUPPORT</h4>
+                    <ul>
+                        <li><a href="about-us.html">About us</a>
+                        </li>
+                                            </ul>
+                </div>
+            
+            </div>
+            <div class="row foot-count">
+                <p>Aahakalyanam - Trusted by over thousands of Boys & Girls for successfull marriage. <a
+                        href="sign-up.html" class="btn btn-primary btn-sm">Join us today !</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- END -->
+
+    <!-- COPYRIGHTS -->
+    <section>
+        <div class="cr">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright © <span id="cry">2025</span> <a href="https://www.theateliercreation.com/" target="_blank">theateliercreattion.com</a> All
+                        rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -1041,18 +1089,22 @@ Limitations)
     </section> -->
     <!-- END -->
     <!-- COPYRIGHTS -->
-    <section>
-        <div class="cr">
-            <div class="container">
-                <div class="row">
-                    <p>Copyright © <span id="cry">2017-2020</span> <a href="https://www.theateliercreation.com" target="_blank">theateliercreation.com</a> All
-                        rights reserved.</p>
+        <!-- <section>
+            <div class="cr">
+                <div class="container">
+                    <div class="row">
+                        <p>Copyright © <span id="cry">2025</span> <a href="https://www.theateliercreation.com" target="_blank">theateliercreation.com</a> All
+                            rights reserved.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section> -->
     <!-- END -->
     <!-- Optional JavaScript -->
+
+    
+
+
 
     <script>
 
@@ -1061,40 +1113,48 @@ const role = getUserRoleFromToken();
 console.log("Detected User Role:", role); // Debug
 
 // Default: hide all controlled elements
-document.querySelector(".register-link")?.classList.add("hide");
-document.querySelector(".user-profile.html")?.classList.add("hide");
-
-document.querySelector(".my-profile")?.classList.add("hide");
 document.querySelector(".plans-link")?.classList.add("hide");
-document.querySelector(".signin-only")?.classList.add("hide");
-document.querySelector(".smenu-pare")?.classList.add("hide");
+        document.querySelector(".dashboard-section")?.classList.add("hide");
+        document.querySelector(".my-profile")?.classList.add("hide");
+        document.querySelector(".register-link")?.classList.add("hide");
+        document.querySelector(".signin-only")?.classList.add("hide");
+        document.querySelector(".logout-only")?.classList.add("hide");
 
 
-// Show based on role
-switch (role) {
-    case "admin":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".register-link")?.classList.remove("hide");
-        document.querySelector(".dashboard-section")?.classList.remove("hide");
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
-    case "moderator":
-        document.querySelector(".my-profile")?.classList.remove("hide");
-        break;
-    case "user":
-        document.querySelector(".plans-link")?.classList.remove("hide");
-        document.querySelector(".user-profile.html")?.classList.remove("hide");
-        document.querySelector(".my-profile")?.classList.remove("hide");
+        
+
+        // Show based on role   
+        switch (role) {
+            case "admin":
+                document.querySelector(".plans-link")?.classList.remove("hide");
+                document.querySelector(".register-link")?.classList.remove("hide");
+                document.querySelector(".logout-only")?.classList.remove("hide");
+                break;
+            case "moderator":
+            document.querySelector(".logout-only")?.classList.remove("hide");
+            document.querySelector(".my-profile")?.classList.add("hide");
+
+            
+
+                break;
+            case "user":
+                document.querySelector(".plans-link")?.classList.remove("hide");
+                document.querySelector(".logout-only")?.classList.remove("hide");
+                document.querySelector(".register-link")?.classList.remove("hide");
+                document.querySelector(".my-profile")?.classList.remove("hide");
 
 
 
-        break;
-    case "viewer": // not signed in
+                break;
+            case "viewer": // not signed in
+                document.querySelector(".signin-only")?.classList.remove("hide");
+                document.querySelector(".plans-link")?.classList.remove("hide");
 
-    default:
-        document.querySelector(".signin-only")?.classList.remove("hide");
-        break;
-}
+
+            default:
+                document.querySelector(".signin-only")?.classList.remove("hide");
+                break;
+        }
 
 
 function getUserRoleFromToken() {

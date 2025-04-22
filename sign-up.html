@@ -168,9 +168,33 @@
                         <ul>
 
                             
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About us</a></li> 
-                            <li><a href="all-profiles.html">View proflies</a></li>                           
+                         
+                            <li><a href="all-profiles.html">View Profiles</a></li>
+
+                            <li class="plans-link"><a href="plans.html">Plans</a></li>
+                               <li class="register-link" ><a href="create-user-profile.html">Register</a></li>
+                               <li><a href="about.html">About us</a></li>                           
+   
+                               <li class="smenu-pare">
+                                   <span class="smenu dashboard-section" >Dashboard</span>
+                                   <div class="smenu-open smenu-single">
+                                       <ul>
+                                           <li><a href="user-dashboard.html">Dashboard</a></li>
+                                           <li><a href="user-profile.html">My profile</a></li>
+                                           <li><a href="user-interests.html">Interests</a></li>
+                                           
+                                       </ul>
+   
+                                       
+                                   </div>
+                               </li>
+                               <li class="signin-only"><a href="login.html">Sign in</a></li>
+                                                <li class="my-profile"><a href="user-profile.html">My profile</a></li>
+                                                <li class="download-form" > <a href="/assets/pdfs/PDF%20ahh.pdf" download >Download PDF</a> </li>
+                
+                                                <li class="logout-only">
+                                                <a href="#" id="logoutBtn">Logout</a>
+                                                </li>                      
                           
 
                                                         <!-- <li class="smenu-pare">
@@ -478,7 +502,7 @@
         <div class="cr">
             <div class="container">
                 <div class="row">
-                    <p>Copyright © <span id="cry">2023</span> <a href="https://www.theateliercreation.com/" target="_blank">theateliercreattion.com</a> All
+                    <p>Copyright © <span id="cry">2025</span> <a href="https://www.theateliercreation.com/" target="_blank">theateliercreattion.com</a> All
                         rights reserved.</p>
                 </div>
             </div>
@@ -490,6 +514,43 @@
 
 
     <script>
+
+        
+document.getElementById("logoutBtn").addEventListener("click", async function (e) {
+    e.preventDefault(); // Prevent default link behavior
+    const token = localStorage.getItem("access_token");
+
+
+    try {
+      const response = await fetch("http://159.89.174.77:5000/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+
+        },
+        
+      });
+
+      if (response.status === 200) {
+        console.log("The decoded token!!!");
+        // Redirect to index.js (or your login/homepage)
+            localStorage.removeItem("access_token");
+
+         window.location.href = "index.html";
+      } else {
+        localStorage.removeItem("access_token");
+        location.reload();
+
+        alert("Session expired. Please log in again.");
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Something went wrong. Please try again later.");
+    }
+  });
+
+
 
 
 
@@ -591,9 +652,7 @@ function getUserRoleFromToken() {
 document.getElementById("registerForm").addEventListener("submit", async function(event) {
     event.preventDefault(); // Prevent form from submitting the default way
 
-    const role = getUserRoleFromToken(); // Assuming this correctly fetches from decoded JWT or session
-
-    console.log("Detected User Role:", role); // Debug
+    
 
     // Get form data
     const formData = new FormData(this);
@@ -617,6 +676,9 @@ document.getElementById("registerForm").addEventListener("submit", async functio
             },
             body: JSON.stringify(userData)
         });
+        const role = getUserRoleFromToken(); // Assuming this correctly fetches from decoded JWT or session
+
+    console.log("Detected User Role:", role); // Debug
 
         const result = await response.json();
 
@@ -637,9 +699,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
                 } else {
                     alert("Registered user ID not returned from server.");
                 }
-            } else {
-                alert("Unrecognized role. Cannot proceed.");
-            }
+            } 
         } else {
             alert(result.message || "Registration failed.");
         }
